@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import DetailsFilling from "./Pages/DetailsFilling";
 import CheckSelectedId from "./Components/CheckSelectedId";
+import AboutUs from "./Components/AboutUs";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         {/* Preview Page */}
 
         {/* About Us Page */}
+        <Route exact path="/about-us" element={<AboutUs />} />
       </Routes>
     </Router>
   );
