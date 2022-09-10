@@ -1,0 +1,11 @@
+.professional-experience-heading {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.vertical-line {
+  width: 100%;
+  border: none;
+  height: 2px;
+  margin-bottom: 8px;
+}

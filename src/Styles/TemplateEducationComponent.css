@@ -1,0 +1,17 @@
+.template-education-details {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.template-education-university,
+.education-start-end {
+  font-size: 12px;
+  margin-left: 10px;
+  font-weight: 400;
+}
+
+.education-start-end {
+  font-style: italic;
+  margin-left: 4px;
+}
