@@ -5,12 +5,14 @@ import "../Styles/BackNextBtnComponent.css";
 const BackNextBtnComponent = (props) => {
   return (
     <div className="back-next-btn-cont">
-      <Button
-        className="outlined-btn"
-        sx={{ marginRight: "20px" }}
-        variant="outlined">
-        Back
-      </Button>
+      {props.tab === 0 ? null : (
+        <Button
+          className="outlined-btn"
+          sx={{ marginRight: "20px" }}
+          variant="outlined">
+          Back
+        </Button>
+      )}
       {props.loading ? (
         <CircularProgress size={25} />
       ) : (

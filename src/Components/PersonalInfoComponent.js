@@ -273,7 +273,11 @@ const PersonalInfoComponent = (props) => {
         error={error ? error.objective_error : false}
       />
       <Divider className="personal-details-divider" />
-      <BackNextBtnComponent onNext={handleNext} loading={loading} />
+      <BackNextBtnComponent
+        onNext={handleNext}
+        loading={loading}
+        tab={props.tab}
+      />
     </Paper>
   );
 };
