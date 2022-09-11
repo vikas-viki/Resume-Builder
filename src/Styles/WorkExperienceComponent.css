@@ -1,0 +1,19 @@
+.MuiPaper-root.MuiPaper-elevation.work-experience-paper {
+  width: 70%;
+  padding: 40px;
+  margin-right: 0px;
+  height: fit-content;
+}
+
+.work-experience-heading {
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+.add-new-btn-cont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

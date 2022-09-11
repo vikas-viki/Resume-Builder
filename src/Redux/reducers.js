@@ -17,6 +17,18 @@ const initialPersonalInfoState = {
   objective: "",
 };
 
+const initialWorkExperienceState = {
+  experiences: [
+    {
+      id: 1,
+      job_title: "",
+      organization_name: "",
+      start_year: "",
+      end_year: "",
+    },
+  ],
+};
+
 export const selectedTemplateReducer = (
   state = initialSelectedTemplateState,
   action
@@ -78,6 +90,79 @@ export const personalInfoReducer = (
       return {
         ...state,
         objective: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const workExperienceReducer = (
+  state = initialWorkExperienceState,
+  action
+) => {
+  switch (action.type) {
+    case actionTypes.ADDEXPERIENCE:
+      return {
+        ...state,
+        experiences: [...state.experiences, action.payload],
+      };
+    case actionTypes.ADDALLEXPERIENCE:
+      return {
+        ...state,
+        experiences: action.payload,
+      };
+    case actionTypes.EDITJOBTITLE:
+      return {
+        ...state,
+        experiences: state.experiences.map((experience) => {
+          if (experience.id === action.payload.id) {
+            return { ...experience, job_title: action.payload.job_title };
+          } else {
+            return experience;
+          }
+        }),
+      };
+    case actionTypes.EDITORGNAME:
+      return {
+        ...state,
+        experiences: state.experiences.map((experience) => {
+          if (experience.id === action.payload.id) {
+            return {
+              ...experience,
+              organization_name: action.payload.organization_name,
+            };
+          } else {
+            return experience;
+          }
+        }),
+      };
+    case actionTypes.EDITSTARTYEAR:
+      return {
+        ...state,
+        experiences: state.experiences.map((experience) => {
+          if (experience.id === action.payload.id) {
+            return {
+              ...experience,
+              start_year: action.payload.start_year,
+            };
+          } else {
+            return experience;
+          }
+        }),
+      };
+    case actionTypes.EDITENDYEAR:
+      return {
+        ...state,
+        experiences: state.experiences.map((experience) => {
+          if (experience.id === action.payload.id) {
+            return {
+              ...experience,
+              end_year: action.payload.end_year,
+            };
+          } else {
+            return experience;
+          }
+        }),
       };
     default:
       return state;
