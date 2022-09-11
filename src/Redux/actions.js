@@ -49,3 +49,33 @@ export const editObjective = (objective) => ({
   type: actionTypes.EDITOBJECTIVE,
   payload: objective,
 });
+
+export const addExperience = (experience) => ({
+  type: actionTypes.ADDEXPERIENCE,
+  payload: experience,
+});
+
+export const addAllExperience = (experience) => ({
+  type: actionTypes.ADDALLEXPERIENCE,
+  payload: experience,
+});
+
+export const editJobTitle = (details) => ({
+  type: actionTypes.EDITJOBTITLE,
+  payload: details,
+});
+
+export const editOrgName = (details) => ({
+  type: actionTypes.EDITORGNAME,
+  payload: details,
+});
+
+export const editStartYear = (details) => ({
+  type: actionTypes.EDITSTARTYEAR,
+  payload: details,
+});
+
+export const editEndYear = (details) => ({
+  type: actionTypes.EDITENDYEAR,
+  payload: details,
+});

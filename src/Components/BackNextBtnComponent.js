@@ -7,6 +7,7 @@ const BackNextBtnComponent = (props) => {
     <div className="back-next-btn-cont">
       {props.tab === 0 ? null : (
         <Button
+          onClick={props.onBack}
           className="outlined-btn"
           sx={{ marginRight: "20px" }}
           variant="outlined">
