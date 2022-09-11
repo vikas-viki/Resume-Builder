@@ -29,9 +29,16 @@
 }
 
 .nav-link:hover {
-  color: rgb(0, 128, 255);
+  color: rgb(0, 98, 255);
 }
 
+.drawerLinks a{
+  margin-top: 30px;
+}
+
+.active{
+  color:rgb(0, 128, 255)
+}
 .MuiToolbar-root.MuiToolbar-regular {
   width: 100%;
   display: flex;

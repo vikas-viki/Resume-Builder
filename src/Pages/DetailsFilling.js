@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Common/Navbar";
 import DetailFillingSidebar from "../Components/DetailFillingSidebar";
+import KeySkillsComponent from "../Components/KeySkillsComponent";
 import PersonalInfoComponent from "../Components/PersonalInfoComponent";
 import "../Styles/DetailsFilling.css";
 
@@ -13,6 +14,7 @@ const DetailsFilling = (props) => {
       <div className="details-filling-cont">
         <DetailFillingSidebar tab={tab} setTab={setTab} />
         {tab === 0 ? <PersonalInfoComponent setTab={setTab} tab={tab} /> : null}
+        {tab === 3 ? <KeySkillsComponent setTab={setTab} tab={tab} /> : null}
       </div>
     </div>
   );

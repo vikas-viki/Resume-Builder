@@ -16,9 +16,11 @@ export default function ButtonMUI() {
           sx={{
             fontSize: {
               xs: "30px",
-              sm: "45px",
-              lg: "55px",
+              sm: "40px",
+              md: '43px',
+              lg: "46px",
             },
+            fontWeight:'400'
           }}
           variant="h2"
         >
@@ -38,14 +40,14 @@ export default function ButtonMUI() {
           <Typography
             sx={{
               fontSize: {
-                xs: "17px",
-                sm: "23px",
-                lg: "25px",
+                xs: "13px",
+                sm: "15px",
+                md: '17px',
+                lg: "19px",
               },
               paddingRight: {
                 xs: "15px",
                 sm: "18px",
-
                 lg: "25px",
               },
             }}
@@ -80,7 +82,8 @@ export default function ButtonMUI() {
               fontSize: {
                 xs: "22px",
                 sm: "25px",
-                lg: "35px",
+                md:'27px',
+                lg: "30px",
               },
               fontWeight: "400",
               color: "dark",
