@@ -94,3 +94,28 @@ export const deleteSkill = (id) => ({
   type: actionTypes.DELETESKILL,
   payload: id,
 });
+
+export const editType = (type) => ({
+  type: actionTypes.EDITTYPE,
+  payload: type,
+});
+
+export const editUniversity = (university) => ({
+  type: actionTypes.EDITUNIVERSITY,
+  payload: university,
+});
+
+export const editDegree = (degree) => ({
+  type: actionTypes.EDITDEGREE,
+  payload: degree,
+});
+
+export const editEducationStartYear = (year) => ({
+  type: actionTypes.EDITEDUCATIONSTARTYEAR,
+  payload: year,
+});
+
+export const editEducationEndYear = (year) => ({
+  type: actionTypes.EDITEDUCATIONENDYEAR,
+  payload: year,
+});

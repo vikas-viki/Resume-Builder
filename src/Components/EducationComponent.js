@@ -4,6 +4,31 @@ import "../Styles/EducationComponent.css";
 import BackNextBtnComponent from "./BackNextBtnComponent";
 import InputComponent from "./InputComponent";
 import SelectComponent from "./SelectComponent";
+import { connect } from "react-redux";
+import {
+  editDegree,
+  editEducationEndYear,
+  editEducationStartYear,
+  editType,
+  editUniversity,
+} from "../Redux/actions";
+
+const mapStateToProps = (state) => ({
+  domain: state.educationDetailsReducer.domain,
+  university: state.educationDetailsReducer.university,
+  degree: state.educationDetailsReducer.degree,
+  start_year: state.educationDetailsReducer.start_year,
+  end_year: state.educationDetailsReducer.end_year,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onEditType: (type) => dispatch(editType(type)),
+  onEditUniversity: (university) => dispatch(editUniversity(university)),
+  onEditDegree: (degree) => dispatch(editDegree(degree)),
+  onEditStartYear: (event) =>
+    dispatch(editEducationStartYear(event.target.value)),
+  onEditEndYear: (event) => dispatch(editEducationEndYear(event.target.value)),
+});
 
 const EducationComponent = (props) => {
   const [loading, setLoading] = useState(false);
@@ -16,17 +41,26 @@ const EducationComponent = (props) => {
     console.log("here");
     props.setTab(props.tab + 1);
   };
+
+  console.log(
+    props.domain,
+    props.university,
+    props.degree,
+    props.start_year,
+    props.end_year
+  );
+
   return (
     <Paper className="education-paper" elevation={3}>
       <h2 className="education-heading">Education Details</h2>
       <Divider sx={{ margin: "10px 0px" }} />
       <div className="education-form-cont">
         <InputComponent
-          title={"Type"}
+          title={"Domain"}
           type={"text"}
           multiline={false}
-          //   value={props.experience.job_title}
-          //   setValue={handleJobTitle}
+          value={props.domain}
+          setValue={props.onEditType}
           // error={props.experience.error.job_title}
         />
         <div></div>
@@ -34,27 +68,27 @@ const EducationComponent = (props) => {
           title={"University"}
           type={"text"}
           multiline={false}
-          //   value={props.experience.organization_name}
-          //   setValue={handleOrgName}
+          value={props.university}
+          setValue={props.onEditUniversity}
           // error={props.experience.error.organization_name}
         />
         <InputComponent
           title={"Degree"}
           type={"text"}
           multiline={false}
-          //   value={props.experience.organization_name}
-          //   setValue={handleOrgName}
+          value={props.degree}
+          setValue={props.onEditDegree}
           // error={props.experience.error.organization_name}
         />
         <SelectComponent
           title={"Start Year"}
-          //   value={props.experience.start_year}
-          //   setValue={handleStartYear}
+          value={props.start_year}
+          setValue={props.onEditStartYear}
         />
         <SelectComponent
           title={"End Year"}
-          //   value={props.experience.end_year}
-          //   setValue={handleEndYear}
+          value={props.end_year}
+          setValue={props.onEditEndYear}
         />
       </div>
       <Divider sx={{ margin: "10px 0px" }} />
@@ -70,4 +104,4 @@ const EducationComponent = (props) => {
   );
 };
 
-export default EducationComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(EducationComponent);

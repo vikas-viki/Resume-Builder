@@ -5,6 +5,7 @@ import {
   personalInfoReducer,
   workExperienceReducer,
   keySkillsReducer,
+  educationDetailsReducer,
 } from "./reducers";
 
 export const store = createStore(
@@ -13,5 +14,6 @@ export const store = createStore(
     personalInfoReducer,
     workExperienceReducer,
     keySkillsReducer,
+    educationDetailsReducer,
   })
 );

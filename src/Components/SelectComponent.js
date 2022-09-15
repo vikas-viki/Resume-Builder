@@ -44,8 +44,12 @@ const SelectComponent = (props) => {
           value={props.value}
           //   label="Age"
           onChange={props.setValue}>
-          {years.map((year) => {
-            return <MenuItem value={year}>{year}</MenuItem>;
+          {years.map((year, index) => {
+            return (
+              <MenuItem key={index} value={year}>
+                {year}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>

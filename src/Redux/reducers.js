@@ -210,3 +210,38 @@ export const keySkillsReducer = (state = initialSkillsState, action) => {
       return state;
   }
 };
+
+export const educationDetailsReducer = (
+  state = initialEducationState,
+  action
+) => {
+  switch (action.type) {
+    case actionTypes.EDITTYPE:
+      return {
+        ...state,
+        domain: action.payload,
+      };
+    case actionTypes.EDITUNIVERSITY:
+      return {
+        ...state,
+        university: action.payload,
+      };
+    case actionTypes.EDITDEGREE:
+      return {
+        ...state,
+        degree: action.payload,
+      };
+    case actionTypes.EDITEDUCATIONSTARTYEAR:
+      return {
+        ...state,
+        start_year: action.payload,
+      };
+    case actionTypes.EDITEDUCATIONENDYEAR:
+      return {
+        ...state,
+        end_year: action.payload,
+      };
+    default:
+      return state;
+  }
+};
