@@ -63,6 +63,8 @@ const EducationComponent = (props) => {
         onBack={handleBack}
         loading={loading}
         tab={props.tab}
+        nextTitle={"Next"}
+        backTitle={"Back"}
       />
     </Paper>
   );

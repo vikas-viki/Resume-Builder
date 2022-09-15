@@ -79,3 +79,18 @@ export const editEndYear = (details) => ({
   type: actionTypes.EDITENDYEAR,
   payload: details,
 });
+
+export const addNewSkills = () => ({
+  type: actionTypes.ADDNEWSKILLS,
+  payload: null,
+});
+
+export const editSkill = (details) => ({
+  type: actionTypes.EDITSKILL,
+  payload: details,
+});
+
+export const deleteSkill = (id) => ({
+  type: actionTypes.DELETESKILL,
+  payload: id,
+});

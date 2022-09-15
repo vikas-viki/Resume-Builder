@@ -277,6 +277,8 @@ const PersonalInfoComponent = (props) => {
         onNext={handleNext}
         loading={loading}
         tab={props.tab}
+        nextTitle={"Next"}
+        backTitle={"Back"}
       />
     </Paper>
   );

@@ -11,7 +11,7 @@ const BackNextBtnComponent = (props) => {
           className="outlined-btn"
           sx={{ marginRight: "20px" }}
           variant="outlined">
-          Back
+          {props.backTitle}
         </Button>
       )}
       {props.loading ? (
@@ -21,7 +21,7 @@ const BackNextBtnComponent = (props) => {
           onClick={props.onNext}
           className="contained-btn"
           variant="contained">
-          Next
+          {props.nextTitle}
         </Button>
       )}
     </div>

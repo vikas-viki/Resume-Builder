@@ -37,6 +37,10 @@ const initialEducationState = {
   end_year: "",
 };
 
+const initialSkillsState = {
+  skills: ["", "", ""],
+};
+
 export const selectedTemplateReducer = (
   state = initialSelectedTemplateState,
   action
@@ -172,6 +176,36 @@ export const workExperienceReducer = (
           }
         }),
       };
+    default:
+      return state;
+  }
+};
+
+export const keySkillsReducer = (state = initialSkillsState, action) => {
+  switch (action.type) {
+    case actionTypes.ADDNEWSKILLS:
+      return { ...state, skills: [...state.skills, ""] };
+    case actionTypes.EDITSKILL: {
+      const newSkills = state.skills.map((eachSkill, id) => {
+        if (id === action.payload.index) {
+          return action.payload.skill;
+        } else {
+          return eachSkill;
+        }
+      });
+
+      return {
+        ...state,
+        skills: newSkills,
+      };
+    }
+    case actionTypes.DELETESKILL: {
+      const newSkills = state.skills.filter(
+        (skill, id) => id !== action.payload
+      );
+
+      return { ...state, skills: newSkills };
+    }
     default:
       return state;
   }
