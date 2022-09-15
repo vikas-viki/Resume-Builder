@@ -137,7 +137,7 @@ function Navbar(props) {
                                         }} */}
                                 <NavLink to='/' className='nav-link'color="inherit">Resume Templates</NavLink>  
                                 <NavLink to='/my/resumes' className='nav-link'color="inherit">My Resumes</NavLink>   
-                                <NavLink to='/about-us' className='nav-link'color="inherit">About us</NavLink> 
+                                <NavLink to='/about-us' className='nav-link'color="inherit">About</NavLink> 
 
                             </Box>
                         </Toolbar>

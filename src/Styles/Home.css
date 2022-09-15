@@ -7,26 +7,14 @@
   padding: 30px 70px;
 }
 
-.templates-heading {
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
+
 
 .template-select-text {
   font-size: 15px;
   margin-bottom: 25px;
 }
 
-.template-cont {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 30px;
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: center; */
-}
+
 
 .templates-img-cont {
   width: 100%;
@@ -60,3 +48,15 @@
 .templates-img-cont:hover .MuiButtonBase-root.MuiButton-root {
   visibility: visible;
 }
+
+@media screen and (max-width: 450px){
+  .home-templates-cont{
+    padding: 15px 30px;
+  }
+}
+@media screen and (max-width: 900px){
+  .home-templates-cont{
+    padding: 20px 55px;
+  }
+}
+
