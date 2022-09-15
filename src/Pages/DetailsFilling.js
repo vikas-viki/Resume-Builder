@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Common/Navbar";
 import DetailFillingSidebar from "../Components/DetailFillingSidebar";
+import EducationComponent from "../Components/EducationComponent";
 import PersonalInfoComponent from "../Components/PersonalInfoComponent";
 import WorkExperienceComponent from "../Components/WorkExperienceComponent";
 import "../Styles/DetailsFilling.css";
@@ -17,6 +18,7 @@ const DetailsFilling = (props) => {
         {tab === 1 ? (
           <WorkExperienceComponent setTab={setTab} tab={tab} />
         ) : null}
+        {tab === 2 ? <EducationComponent setTab={setTab} tab={tab} /> : null}
       </div>
     </div>
   );

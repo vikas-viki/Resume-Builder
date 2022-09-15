@@ -29,6 +29,14 @@ const initialWorkExperienceState = {
   ],
 };
 
+const initialEducationState = {
+  domain: "",
+  university: "",
+  degree: "",
+  start_year: "",
+  end_year: "",
+};
+
 export const selectedTemplateReducer = (
   state = initialSelectedTemplateState,
   action
