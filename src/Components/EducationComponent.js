@@ -14,11 +14,7 @@ import {
 } from "../Redux/actions";
 
 const mapStateToProps = (state) => ({
-  domain: state.educationDetailsReducer.domain,
-  university: state.educationDetailsReducer.university,
-  degree: state.educationDetailsReducer.degree,
-  start_year: state.educationDetailsReducer.start_year,
-  end_year: state.educationDetailsReducer.end_year,
+  educationInfo: state.educationDetailsReducer.educationInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -43,11 +39,11 @@ const EducationComponent = (props) => {
   };
 
   console.log(
-    props.domain,
-    props.university,
-    props.degree,
-    props.start_year,
-    props.end_year
+    props.educationInfo.domain,
+    props.educationInfo.university,
+    props.educationInfo.degree,
+    props.educationInfo.start_year,
+    props.educationInfo.end_year
   );
 
   return (
@@ -59,7 +55,7 @@ const EducationComponent = (props) => {
           title={"Domain"}
           type={"text"}
           multiline={false}
-          value={props.domain}
+          value={props.educationInfo.domain}
           setValue={props.onEditType}
           // error={props.experience.error.job_title}
         />
@@ -68,7 +64,7 @@ const EducationComponent = (props) => {
           title={"University"}
           type={"text"}
           multiline={false}
-          value={props.university}
+          value={props.educationInfo.university}
           setValue={props.onEditUniversity}
           // error={props.experience.error.organization_name}
         />
@@ -76,18 +72,18 @@ const EducationComponent = (props) => {
           title={"Degree"}
           type={"text"}
           multiline={false}
-          value={props.degree}
+          value={props.educationInfo.degree}
           setValue={props.onEditDegree}
           // error={props.experience.error.organization_name}
         />
         <SelectComponent
           title={"Start Year"}
-          value={props.start_year}
+          value={props.educationInfo.start_year}
           setValue={props.onEditStartYear}
         />
         <SelectComponent
           title={"End Year"}
-          value={props.end_year}
+          value={props.educationInfo.end_year}
           setValue={props.onEditEndYear}
         />
       </div>

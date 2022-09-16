@@ -5,16 +5,18 @@ const initialSelectedTemplateState = {
 };
 
 const initialPersonalInfoState = {
-  profile_img: "",
-  first_name: "",
-  last_name: "",
-  email: "",
-  mobile: "",
-  address: "",
-  city: "",
-  state_name: "",
-  postal_code: "",
-  objective: "",
+  personalInfo: {
+    profile_img: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    mobile: "",
+    address: "",
+    city: "",
+    state_name: "",
+    postal_code: "",
+    objective: "",
+  },
 };
 
 const initialWorkExperienceState = {
@@ -30,11 +32,13 @@ const initialWorkExperienceState = {
 };
 
 const initialEducationState = {
-  domain: "",
-  university: "",
-  degree: "",
-  start_year: "",
-  end_year: "",
+  educationInfo: {
+    domain: "",
+    university: "",
+    degree: "",
+    start_year: "",
+    end_year: "",
+  },
 };
 
 const initialSkillsState = {
@@ -61,47 +65,74 @@ export const personalInfoReducer = (
     case actionTypes.EDITFIRSTNAME:
       return {
         ...state,
-        first_name: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          first_name: action.payload,
+        },
       };
     case actionTypes.EDITLASTNAME:
       return {
         ...state,
-        last_name: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          last_name: action.payload,
+        },
       };
     case actionTypes.EDITEMAIL:
       return {
         ...state,
-        email: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          email: action.payload,
+        },
       };
     case actionTypes.EDITMOBILE:
       return {
         ...state,
-        mobile: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          mobile: action.payload,
+        },
       };
     case actionTypes.EDITADDRESS:
       return {
         ...state,
-        address: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          address: action.payload,
+        },
       };
     case actionTypes.EDITCITY:
       return {
         ...state,
-        city: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          city: action.payload,
+        },
       };
     case actionTypes.EDITSTATE:
       return {
         ...state,
-        state_name: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          state_name: action.payload,
+        },
       };
     case actionTypes.EDITPOSTALCODE:
       return {
         ...state,
-        postal_code: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          postal_code: action.payload,
+        },
       };
     case actionTypes.EDITOBJECTIVE:
       return {
         ...state,
-        objective: action.payload,
+        personalInfo: {
+          ...state.personalInfo,
+          objective: action.payload,
+        },
       };
     default:
       return state;
@@ -219,27 +250,42 @@ export const educationDetailsReducer = (
     case actionTypes.EDITTYPE:
       return {
         ...state,
-        domain: action.payload,
+        educationInfo: {
+          ...state.educationInfo,
+          domain: action.payload,
+        },
       };
     case actionTypes.EDITUNIVERSITY:
       return {
         ...state,
-        university: action.payload,
+        educationInfo: {
+          ...state.educationInfo,
+          university: action.payload,
+        },
       };
     case actionTypes.EDITDEGREE:
       return {
         ...state,
-        degree: action.payload,
+        educationInfo: {
+          ...state.educationInfo,
+          degree: action.payload,
+        },
       };
     case actionTypes.EDITEDUCATIONSTARTYEAR:
       return {
         ...state,
-        start_year: action.payload,
+        educationInfo: {
+          ...state.educationInfo,
+          start_year: action.payload,
+        },
       };
     case actionTypes.EDITEDUCATIONENDYEAR:
       return {
         ...state,
-        end_year: action.payload,
+        educationInfo: {
+          ...state.educationInfo,
+          end_year: action.payload,
+        },
       };
     default:
       return state;

@@ -2,7 +2,7 @@ import { Paper, Typography, Divider, Button } from "@mui/material";
 import React, { useState } from "react";
 import InputComponent from "./InputComponent";
 import "../Styles/KeySkillsComponent.css";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import BackNextBtnComponent from "./BackNextBtnComponent";
 import { connect } from "react-redux";
 import { addNewSkills, deleteSkill, editSkill } from "../Redux/actions";
@@ -45,7 +45,7 @@ function KeySkillsComponent(props) {
                 error={error ? error.first_name_error : false}
               />
               {props.skills.length === 1 ? null : (
-                <DeleteIcon
+                <DeleteOutlineOutlinedIcon
                   sx={{ marginLeft: "10px" }}
                   onClick={() => props.onDeleteSkill(index)}
                 />

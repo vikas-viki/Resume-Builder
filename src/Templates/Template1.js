@@ -10,18 +10,36 @@ import TemplateEducationComponent from "../Components/TemplateEducationComponent
 import TemplateKeySkillComponent from "../Components/TemplateKeySkillComponent";
 
 const Template1 = (props) => {
+  console.log(
+    props.personalinfo,
+    props.workexperience,
+    props.educationinfo,
+    props.skills
+  );
+  const personalinfo = props.personalinfo
+    ? props.personalinfo
+    : data.personal_info;
+  const workexperience = props.workexperience
+    ? props.workexperience
+    : data.work_experience;
+  const educationinfo = props.educationinfo
+    ? props.educationinfo
+    : data.education_details;
+  const skills = props.skills ? props.skills : data.key_skills;
+
   return (
     <Paper id="report" elevation={3}>
       <TemplateHeader
-        primaryColor={props.primaryColor}
-        secondaryColor={props.secondaryColor}
-        bgColor={props.bgColor}
-        data={data}
+        primaryColor={"#C98A55"}
+        secondaryColor={"black"}
+        bgColor={"white"}
+        personalInfo={personalinfo}
+        workExperience={workexperience}
       />
       <Container>
         <TemplateHeading color={"#C98A55"} title={"Professional Experience"} />
         <ul style={{ marginBottom: 10 }}>
-          {data.work_experience.map((experience, index) => {
+          {workexperience.map((experience, index) => {
             return (
               <TemplateOneExperienceComponent
                 key={index}
@@ -31,11 +49,11 @@ const Template1 = (props) => {
           })}
         </ul>
         <TemplateHeading color={"#C98A55"} title={"Education"} />
-        <TemplateEducationComponent education={data.education_details} />
+        <TemplateEducationComponent education={educationinfo} />
         <TemplateHeading color={"#C98A55"} title={"Key Skills"} />
         <ul style={{ marginBottom: 10 }}>
-          {data.key_skills.map((skill) => {
-            return <TemplateKeySkillComponent key={skill.id} skill={skill} />;
+          {skills.map((skill, index) => {
+            return <TemplateKeySkillComponent key={index} skill={skill} />;
           })}
         </ul>
       </Container>

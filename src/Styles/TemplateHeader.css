@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 12px;
   padding: 20px 20px 0px;
 }
@@ -41,7 +41,8 @@
 .template-user-name {
   font-size: 30px;
   font-weight: 600;
-  /* margin-bottom: 5px; */
+  line-height: 30px;
+  margin-bottom: 5px;
 }
 
 .template-user-designation {
