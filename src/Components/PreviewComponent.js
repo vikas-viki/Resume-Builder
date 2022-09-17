@@ -40,6 +40,7 @@ const PreviewComponent = (props) => {
       setError("*Please fill this field");
     } else {
       // alert("Resume Saved");
+      setError("");
       const report = new JsPDF("portrait", "pt", "a4");
       report.html(document.querySelector("#report")).then(() => {
         report.save(`${resumeName}.pdf`);
