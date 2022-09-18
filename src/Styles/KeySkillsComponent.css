@@ -21,7 +21,7 @@
 }
 
 .MuiPaper-root.MuiPaper-elevation.key-skills-paper {
-  width: 70%;
+  width: 75%;
   padding: 40px;
   margin-right: 0px;
   height: fit-content;
@@ -42,4 +42,24 @@
 .MuiDivider-root.key-skills-divider {
   border-bottom-width: 2px;
   margin: 20px 0px;
+}
+@media screen and (max-width: 1010px) {
+  .MuiPaper-root.MuiPaper-elevation.key-skills-paper{
+    width: 100%;
+    padding: 20px;
+
+  }
+}
+@media screen and (min-width: 1010px) and (max-width: 1300px) {
+  .MuiPaper-root.MuiPaper-elevation.key-skills-paper{
+    width: 90%;
+    padding: 40px;
+
+  }
+}
+@media screen and (max-width: 450px) {
+  .key-skills-form-fields {
+    grid-template-columns: 1fr;
+    
+  }
 }

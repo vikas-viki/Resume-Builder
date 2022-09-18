@@ -1,5 +1,5 @@
 .MuiPaper-root.MuiPaper-elevation.work-experience-paper {
-  width: 70%;
+  width: 75%;
   padding: 40px;
   margin-right: 0px;
   height: fit-content;
@@ -16,4 +16,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 1010px) {
+  .MuiPaper-root.MuiPaper-elevation.work-experience-paper{
+    width: 100%;
+    padding: 30px;
+    
+  }
+}
+@media screen and (min-width: 1010px) and (max-width: 1300px) {
+  .MuiPaper-root.MuiPaper-elevation.work-experience-paper{
+    width: 90%;
+    padding: 40px;
+
+  }
+}
+@media screen and (max-width: 450px) {
+  .education-form-cont {
+    grid-template-columns: 1fr;
+    
+  }
 }
