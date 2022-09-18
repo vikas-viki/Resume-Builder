@@ -1,4 +1,4 @@
-import { Container, Grid, TextField } from "@mui/material";
+import { Container, TextField } from "@mui/material";
 import React, { useState } from "react";
 import "../Styles/PreviewComponent.css";
 import { connect } from "react-redux";
@@ -21,13 +21,14 @@ const PreviewComponent = (props) => {
   const [resumeName, setResumeName] = useState("");
   const [error, setError] = useState("");
 
-  const getTemplate = (template) => {
+  const getTemplate = (template, index) => {
     if (template.id === props.selectedTemplateId) {
       const TemplateComp = React.cloneElement(template.template, {
         personalinfo: props.personalInfo,
         workexperience: props.experiences,
         educationinfo: props.educationInfo,
         skills: props.skills,
+        key: index,
       });
       return TemplateComp;
     }
@@ -39,7 +40,6 @@ const PreviewComponent = (props) => {
     if (resumeName.length === 0) {
       setError("*Please fill this field");
     } else {
-      // alert("Resume Saved");
       setError("");
       const report = new JsPDF("portrait", "pt", "a4");
       report.html(document.querySelector("#report")).then(() => {
@@ -57,8 +57,8 @@ const PreviewComponent = (props) => {
       <h2 className="preview-header-title">Resume Preview</h2>
       <div className="resume-preview-grid-container">
         <div className="resume-preview-grid-item">
-          {templates.map((template) => {
-            return getTemplate(template);
+          {templates.map((template, index) => {
+            return getTemplate(template, index);
           })}
         </div>
         <div className="resume-preview-grid-item">

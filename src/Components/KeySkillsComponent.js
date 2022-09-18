@@ -2,10 +2,11 @@ import { Paper, Typography, Divider, Button } from "@mui/material";
 import React, { useState } from "react";
 import InputComponent from "./InputComponent";
 import "../Styles/KeySkillsComponent.css";
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import BackNextBtnComponent from "./BackNextBtnComponent";
 import { connect } from "react-redux";
 import { addNewSkills, deleteSkill, editSkill } from "../Redux/actions";
+import { useForm } from "react-hook-form";
 
 const mapStateToProps = (state) => ({
   skills: state.keySkillsReducer.skills,
@@ -18,11 +19,21 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function KeySkillsComponent(props) {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handlePreview = () => {
-    props.setTab(props.tab + 1);
+  const handlePreview = (data) => {
+    // console.log(data);
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      props.setTab(props.tab + 1);
+    }, 1000);
   };
 
   const handleBack = () => {
@@ -33,44 +44,53 @@ function KeySkillsComponent(props) {
     <Paper elevation={3} className="key-skills-paper">
       <h2 className="key-skills-heading">Key Skills</h2>
       <Divider />
-      <div className="key-skills-form-fields">
-        {props.skills.map((skill, index) => {
-          return (
-            <div key={index} className="key-input-with-delete">
-              <InputComponent
-                type="text"
-                multiline={false}
-                value={skill}
-                setValue={(skill) => props.onEditSkill(skill, index)}
-                error={error ? error.first_name_error : false}
-              />
-              {props.skills.length === 1 ? null : (
-                <DeleteOutlineOutlinedIcon
-                  sx={{ marginLeft: "10px" }}
-                  onClick={() => props.onDeleteSkill(index)}
+      <form onSubmit={handleSubmit(handlePreview)}>
+        <div className="key-skills-form-fields">
+          {props.skills.map((skill, index) => {
+            return (
+              <div key={index} className="key-input-with-delete">
+                <InputComponent
+                  type="text"
+                  name={`skill${index + 1}`}
+                  register={register}
+                  multiline={false}
+                  value={skill}
+                  setValue={(skill) => props.onEditSkill(skill, index)}
+                  error={errors[`skill${index + 1}`] ? true : false}
+                  errorMessage={
+                    errors[`skill${index + 1}`]
+                      ? errors[`skill${index + 1}`].message
+                      : null
+                  }
                 />
-              )}
-            </div>
-          );
-        })}
-      </div>
-      {props.skills.length >= 6 ? null : (
-        <Button
-          className="add-new-btn"
-          variant="text"
-          onClick={props.onAddNewSkill}>
-          Add new
-        </Button>
-      )}
-      <Divider className="key-skills-divider" />
-      <BackNextBtnComponent
-        onNext={handlePreview}
-        loading={loading}
-        tab={props.tab}
-        onBack={handleBack}
-        nextTitle={"Preview"}
-        backTitle={"Back"}
-      />
+                {props.skills.length === 1 ? null : (
+                  <DeleteOutlineOutlinedIcon
+                    sx={{ marginLeft: "10px" }}
+                    onClick={() => props.onDeleteSkill(index)}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {props.skills.length >= 6 ? null : (
+          <Button
+            className="add-new-btn"
+            variant="text"
+            onClick={props.onAddNewSkill}>
+            Add new
+          </Button>
+        )}
+        <Divider className="key-skills-divider" />
+        <BackNextBtnComponent
+          onNext={handlePreview}
+          loading={loading}
+          tab={props.tab}
+          onBack={handleBack}
+          nextTitle={"Preview"}
+          backTitle={"Back"}
+        />
+      </form>
     </Paper>
   );
 }

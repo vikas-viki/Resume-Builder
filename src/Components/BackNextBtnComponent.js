@@ -17,10 +17,7 @@ const BackNextBtnComponent = (props) => {
       {props.loading ? (
         <CircularProgress size={25} />
       ) : (
-        <Button
-          onClick={props.onNext}
-          className="contained-btn"
-          variant="contained">
+        <Button type="submit" className="contained-btn" variant="contained">
           {props.nextTitle}
         </Button>
       )}

@@ -1,5 +1,5 @@
 import { Divider } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import "../Styles/EachExperienceComponent.css";
 import InputComponent from "./InputComponent";
 import { connect } from "react-redux";
@@ -48,18 +48,30 @@ const EachExperienceComponent = (props) => {
         <InputComponent
           title={"Job Title"}
           type={"text"}
+          name={"jobTitle"}
+          register={props.register}
           multiline={false}
           value={props.experience.job_title}
           setValue={handleJobTitle}
-          // error={props.experience.error.job_title}
+          error={props.errors.jobTitle ? true : false}
+          errorMessage={
+            props.errors.jobTitle ? props.errors.jobTitle.message : null
+          }
         />
         <InputComponent
           title={"Organization Name"}
           type={"text"}
+          name={"organizationName"}
+          register={props.register}
           multiline={false}
           value={props.experience.organization_name}
           setValue={handleOrgName}
-          // error={props.experience.error.organization_name}
+          error={props.errors.organizationName ? true : false}
+          errorMessage={
+            props.errors.organizationName
+              ? props.errors.organizationName.message
+              : null
+          }
         />
         <SelectComponent
           title={"Start Year"}

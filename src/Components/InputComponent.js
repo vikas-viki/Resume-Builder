@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import React from "react";
 import "../Styles/InputComponent.css";
+import { inputChecks } from "../Utils/inputChecks";
 
 const InputComponent = (props) => {
   return (
@@ -9,12 +10,14 @@ const InputComponent = (props) => {
       <TextField
         variant="outlined"
         type={props.type}
+        name={props.name}
+        {...props.register(props.name, inputChecks(props.type, props.name))}
         multiline={props.multiline}
         rows={5}
         value={props.value}
         onChange={(e) => props.setValue(e.target.value.toString())}
         error={props.error}
-        helperText={props.error ? "*Please fill this field" : null}
+        helperText={props.errorMessage ? props.errorMessage : null}
       />
     </div>
   );
