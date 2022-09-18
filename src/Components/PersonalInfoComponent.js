@@ -25,16 +25,7 @@ import {
 } from "../Redux/actions";
 
 const mapStateToProps = (state) => ({
-  profile_img: state.personalInfoReducer.profile_img,
-  first_name: state.personalInfoReducer.first_name,
-  last_name: state.personalInfoReducer.last_name,
-  email: state.personalInfoReducer.email,
-  mobile: state.personalInfoReducer.mobile,
-  address: state.personalInfoReducer.address,
-  city: state.personalInfoReducer.city,
-  state_name: state.personalInfoReducer.state_name,
-  postal_code: state.personalInfoReducer.postal_code,
-  objective: state.personalInfoReducer.objective,
+  personalInfo: state.personalInfoReducer.personalInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,7 +68,7 @@ const PersonalInfoComponent = (props) => {
 
 
   const handleNext = () => {
-    if (props.first_name.length === 0) {
+    if (props.personalInfo.first_name.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: true,
@@ -90,7 +81,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (props.last_name.length === 0) {
+    } else if (props.personalInfo.last_name.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -103,7 +94,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (props.email.length === 0) {
+    } else if (props.personalInfo.email.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -116,7 +107,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (Number(props.mobile) <= 0) {
+    } else if (Number(props.personalInfo.mobile) <= 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -129,7 +120,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (props.address.length === 0) {
+    } else if (props.personalInfo.address.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -142,7 +133,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (props.city.length === 0) {
+    } else if (props.personalInfo.city.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -155,7 +146,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (props.state_name.length === 0) {
+    } else if (props.personalInfo.state_name.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -168,7 +159,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: false,
         objective_error: false,
       }));
-    } else if (Number(props.postal_code) <= 0) {
+    } else if (Number(props.personalInfo.postal_code) <= 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -181,7 +172,7 @@ const PersonalInfoComponent = (props) => {
         postal_code_error: true,
         objective_error: false,
       }));
-    } else if (props.objective.length === 0) {
+    } else if (props.personalInfo.objective.length === 0) {
       setError((prevError) => ({
         ...prevError,
         first_name_error: false,
@@ -297,7 +288,7 @@ const PersonalInfoComponent = (props) => {
           title={"First Name"}
           type={"text"}
           multiline={false}
-          value={props.first_name}
+          value={props.personalInfo.first_name}
           setValue={props.setFirstName}
           error={error ? error.first_name_error : false}
         />
@@ -305,7 +296,7 @@ const PersonalInfoComponent = (props) => {
           title={"Last Name"}
           type={"text"}
           multiline={false}
-          value={props.last_name}
+          value={props.personalInfo.last_name}
           setValue={props.setLastName}
           error={error ? error.last_name_error : false}
         />
@@ -313,7 +304,7 @@ const PersonalInfoComponent = (props) => {
           title={"Email"}
           type={"email"}
           multiline={false}
-          value={props.email}
+          value={props.personalInfo.email}
           setValue={props.setEmail}
           error={error ? error.email_error : false}
         />
@@ -321,7 +312,7 @@ const PersonalInfoComponent = (props) => {
           title={"Mobile"}
           type={"number"}
           multiline={false}
-          value={props.mobile}
+          value={props.personalInfo.mobile}
           setValue={props.setMobile}
           error={error ? error.mobile_error : false}
         />
@@ -330,7 +321,7 @@ const PersonalInfoComponent = (props) => {
         title={"Address"}
         type={"text"}
         multiline={false}
-        value={props.address}
+        value={props.personalInfo.address}
         setValue={props.setAddress}
         error={error ? error.address_error : false}
       />
@@ -339,7 +330,7 @@ const PersonalInfoComponent = (props) => {
           title={"City"}
           type={"text"}
           multiline={false}
-          value={props.city}
+          value={props.personalInfo.city}
           setValue={props.setCity}
           error={error ? error.city_error : false}
         />
@@ -347,7 +338,7 @@ const PersonalInfoComponent = (props) => {
           title={"State"}
           type={"text"}
           multiline={false}
-          value={props.state_name}
+          value={props.personalInfo.state_name}
           setValue={props.setStateName}
           error={error ? error.state_error : false}
         />
@@ -355,7 +346,7 @@ const PersonalInfoComponent = (props) => {
           title={"Postal Code"}
           type={"number"}
           multiline={false}
-          value={props.postal_code}
+          value={props.personalInfo.postal_code}
           setValue={props.setPostalCode}
           error={error ? error.postal_code_error : false}
         />
@@ -364,7 +355,7 @@ const PersonalInfoComponent = (props) => {
         title={"Objective"}
         type={"text"}
         multiline={true}
-        value={props.objective}
+        value={props.personalInfo.objective}
         setValue={props.setObjective}
         error={error ? error.objective_error : false}
       />

@@ -5,7 +5,7 @@ import "../Styles/TemplateKeySkillComponent.css";
 const TemplateKeySkillComponent = (props) => {
   return (
     <Container>
-      <li className="skill">{props.skill.skill}</li>
+      <li className="skill">{props.skill}</li>
     </Container>
   );
 };

@@ -17,27 +17,27 @@ const TemplateHeader = (props) => {
             <h2
               style={{ color: props.primaryColor }}
               className="template-user-name">
-              {props.data.personal_info.first_name +
+              {props.personalInfo.first_name +
                 " " +
-                props.data.personal_info.last_name}
+                props.personalInfo.last_name}
             </h2>
             <p
               style={{ color: props.secondaryColor }}
               className="template-user-designation">
-              {props.data.work_experience[0].job_title}
+              {props.workExperience[0].job_title}
             </p>
           </div>
         </div>
         <p
           style={{ color: props.primaryColor }}
           className="template-header-second">
-          {props.data.personal_info.address}
+          {props.personalInfo.address}
         </p>
       </div>
       <p
         style={{ color: props.secondaryColor }}
         className="template-user-about">
-        {props.data.personal_info.objective}
+        {props.personalInfo.objective}
       </p>
     </div>
   );

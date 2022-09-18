@@ -34,26 +34,5 @@ export const data = {
     start_year: "2018",
     end_year: "2022",
   },
-  key_skills: [
-    {
-      id: 1,
-      skill: "Python",
-    },
-    {
-      id: 2,
-      skill: "Machine Learning",
-    },
-    {
-      id: 3,
-      skill: "MERN Stack",
-    },
-    {
-      id: 4,
-      skill: "Cloud",
-    },
-    {
-      id: 5,
-      skill: "SEO",
-    },
-  ],
+  key_skills: ["Python", "Machine Learning", "MERN Stack", "Cloud", "SEO"],
 };

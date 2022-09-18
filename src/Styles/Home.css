@@ -7,14 +7,17 @@
   padding: 30px 70px;
 }
 
-
+.template-header-title {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 1px;
+}
 
 .template-select-text {
   font-size: 15px;
   margin-bottom: 25px;
 }
-
-
 
 .templates-img-cont {
   width: 100%;
@@ -49,14 +52,13 @@
   visibility: visible;
 }
 
-@media screen and (max-width: 450px){
-  .home-templates-cont{
+@media screen and (max-width: 450px) {
+  .home-templates-cont {
     padding: 15px 30px;
   }
 }
-@media screen and (max-width: 900px){
-  .home-templates-cont{
+@media screen and (max-width: 900px) {
+  .home-templates-cont {
     padding: 20px 55px;
   }
 }
-
