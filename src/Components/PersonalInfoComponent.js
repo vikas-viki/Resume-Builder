@@ -22,6 +22,7 @@ import {
   editObjective,
   editPostalCode,
   editState,
+  setProfileImage,
 } from "../Redux/actions";
 import { useForm } from "react-hook-form";
 
@@ -30,6 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onSetProfileImage: (img) => dispatch(setProfileImage(img)),
   setFirstName: (first_name) => dispatch(editFirstName(first_name)),
   setLastName: (last_name) => dispatch(editLastName(last_name)),
   setEmail: (email) => dispatch(editEmail(email)),
@@ -61,7 +63,7 @@ const PersonalInfoComponent = (props) => {
   const [img, setImg] = useState(null);
   const [sotreImage, setSotreImage] = useState([]);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -108,19 +110,24 @@ const PersonalInfoComponent = (props) => {
   const onClose = (view) => {
     setImg(null);
   };
+
   const saveImage = () => {
     setSotreImage([{ img }]);
+    props.onSetProfileImage(img);
     setOpen(false);
   };
-  const profileImg = sotreImage.map((ele) => ele.img);
+
+  // const profileImg = sotreImage.map((ele) => ele.img);
+  // console.log(profileImg);
+
   return (
     <Paper className="personal-info-paper" elevation={3}>
       <Avatar
         sx={{ width: 120, height: 120, marginBottom: 1 }}
         alt="profile img"
         src={
-          profileImg.length
-            ? profileImg
+          props.personalInfo.profile_img.length
+            ? props.personalInfo.profile_img
             : `https://img.icons8.com/color/344/test-account.png`
         }
       />

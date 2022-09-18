@@ -62,6 +62,14 @@ export const personalInfoReducer = (
   action
 ) => {
   switch (action.type) {
+    case actionTypes.SETPROFILEIMAGE:
+      return {
+        ...state,
+        personalInfo: {
+          ...state.personalInfo,
+          profile_img: action.payload,
+        },
+      };
     case actionTypes.EDITFIRSTNAME:
       return {
         ...state,

@@ -5,6 +5,11 @@ export const selectTemplate = (id) => ({
   payload: id,
 });
 
+export const setProfileImage = (image) => ({
+  type: actionTypes.SETPROFILEIMAGE,
+  payload: image,
+});
+
 export const editFirstName = (first_name) => ({
   type: actionTypes.EDITFIRSTNAME,
   payload: first_name,
