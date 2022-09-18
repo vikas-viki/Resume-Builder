@@ -3,7 +3,7 @@ import Navbar from "../Components/Common/Navbar";
 import "../Styles/Home.css";
 import { templates } from "../Data/templates";
 import BlackScreen from "../Components/BlackScreen";
-import { Button, Typography, Stack } from "@mui/material";
+import { Button,  Stack } from "@mui/material";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectTemplate } from "../Redux/actions";

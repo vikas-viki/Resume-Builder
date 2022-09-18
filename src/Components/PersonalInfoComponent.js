@@ -4,6 +4,14 @@ import "../Styles/PersonalInfoComponent.css";
 import BackNextBtnComponent from "./BackNextBtnComponent";
 import InputComponent from "./InputComponent";
 import { connect } from "react-redux";
+import Avatar1 from "react-avatar-edit";
+import { styled } from "@mui/material/styles";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   editAddress,
   editCity,
@@ -32,14 +40,35 @@ const mapDispatchToProps = (dispatch) => ({
   setPostalCode: (postal_code) => dispatch(editPostalCode(postal_code)),
   setObjective: (objective) => dispatch(editObjective(objective)),
 });
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
 
 const PersonalInfoComponent = (props) => {
   const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [img, setImg] = useState(null);
+  const [sotreImage, setSotreImage] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleNext = (data) => {
     setLoading(true);
@@ -50,16 +79,82 @@ const PersonalInfoComponent = (props) => {
     }, 1000);
   };
 
+  const BootstrapDialogTitle = (props) => {
+    const { children, onClose, ...other } = props;
+
+    return (
+      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+        {children}
+        {onClose ? (
+          <IconButton
+            aria-label="close"
+            onClick={onClose}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}>
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </DialogTitle>
+    );
+  };
+  const onCrop = (view) => {
+    setImg(view);
+  };
+
+  const onClose = (view) => {
+    setImg(null);
+  };
+  const saveImage = () => {
+    setSotreImage([{ img }]);
+    setOpen(false);
+  };
+  const profileImg = sotreImage.map((ele) => ele.img);
   return (
     <Paper className="personal-info-paper" elevation={3}>
       <Avatar
         sx={{ width: 120, height: 120, marginBottom: 1 }}
         alt="profile img"
-        src="https://img.icons8.com/color/344/test-account.png"
+        src={
+          profileImg.length
+            ? profileImg
+            : `https://img.icons8.com/color/344/test-account.png`
+        }
       />
-      <Button className="change-profile-photo-btn" variant="text">
-        Change Profile Photo
-      </Button>
+      <div>
+        <Button
+          className="change-profile-photo-btn"
+          variant="outlined"
+          onClick={handleClickOpen}>
+          Change Profile Photo
+        </Button>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}>
+          <BootstrapDialogTitle
+            id="customized-dialog-title"
+            onClose={handleClose}>
+            Update Image
+          </BootstrapDialogTitle>
+          <DialogContent>
+            <Avatar1
+              width={400}
+              height={300}
+              onCrop={onCrop}
+              onClose={onClose}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus variant="contained" onClick={saveImage}>
+              Save
+            </Button>
+          </DialogActions>
+        </BootstrapDialog>
+      </div>
       <form onSubmit={handleSubmit(handleNext)}>
         <div className="personal-info-form-fields">
           <InputComponent
