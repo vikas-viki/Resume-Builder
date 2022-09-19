@@ -1,4 +1,4 @@
-import { Container, TextField } from "@mui/material";
+import { Button, CircularProgress, Container, TextField } from "@mui/material";
 import React, { useState } from "react";
 import "../Styles/PreviewComponent.css";
 import { connect } from "react-redux";
@@ -41,9 +41,12 @@ const PreviewComponent = (props) => {
       setError("*Please fill this field");
     } else {
       setError("");
+      setLoading(true);
       const report = new JsPDF("portrait", "pt", "a4");
       report.html(document.querySelector("#report")).then(() => {
         report.save(`${resumeName}.pdf`);
+        setLoading(false);
+        //Redirect user to the myResumes page
       });
     }
   };
@@ -74,14 +77,23 @@ const PreviewComponent = (props) => {
               helperText={error}
             />
             <div className="resume-back-next-container">
-              <BackNextBtnComponent
-                onNext={handleSave}
-                onBack={handleBack}
-                loading={loading}
-                tab={props.tab}
-                nextTitle={"Save"}
-                backTitle={"Back"}
-              />
+              <Button
+                onClick={handleBack}
+                className="outlined-btn"
+                sx={{ marginRight: "20px" }}
+                variant="outlined">
+                Back
+              </Button>
+              {loading ? (
+                <CircularProgress size={25} />
+              ) : (
+                <Button
+                  onClick={handleSave}
+                  className="contained-btn"
+                  variant="contained">
+                  Save
+                </Button>
+              )}
             </div>
           </div>
         </div>
