@@ -1,11 +1,12 @@
-import { Button, Divider, Paper } from "@mui/material";
-import React, { useState } from "react";
+import { Button, Divider, MenuItem, Paper, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import "../Styles/WorkExperienceComponent.css";
 import { connect } from "react-redux";
-import EachExperienceComponent from "./EachExperienceComponent";
 import BackNextBtnComponent from "./BackNextBtnComponent";
 import { addAllExperience, addExperience } from "../Redux/actions";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import InputComponent from "./InputComponent";
+import SelectComponent from "./SelectComponent";
 
 const mapStateToProps = (state) => ({
   experiences: state.workExperienceReducer.experiences,
@@ -16,11 +17,26 @@ const mapDispatchToProps = (dispatch) => ({
   setAllExperience: (experiences) => dispatch(addAllExperience(experiences)),
 });
 
+const years = [
+  "2022",
+  "2021",
+  "2020",
+  "2019",
+  "2018",
+  "2017",
+  "2016",
+  "2015",
+  "2014",
+  "2013",
+];
+
 const WorkExperienceComponent = (props) => {
   const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -29,8 +45,26 @@ const WorkExperienceComponent = (props) => {
   };
 
   const handleNext = (data) => {
-    // console.log(data);
+    // console.log(Object.entries(data));
     setLoading(true);
+
+    let experienceOne = {};
+    let experienceTwo = {};
+
+    for (let index in data) {
+      // console.log(index.slice(0, index.length));
+      if (index.includes("1")) {
+        experienceOne[index.slice(0, index.length - 1)] = data[index];
+      } else {
+        experienceTwo[index.slice(0, index.length - 1)] = data[index];
+      }
+    }
+
+    if (Object.keys(experienceTwo).length) {
+      props.setAllExperience([experienceOne, experienceTwo]);
+    } else {
+      props.setAllExperience([experienceOne]);
+    }
 
     setTimeout(() => {
       setLoading(false);
@@ -38,15 +72,15 @@ const WorkExperienceComponent = (props) => {
     }, 1000);
   };
 
-  // console.log(props.experiences);
+  console.log(props.experiences, errors);
 
   const addNewExperience = () => {
     props.setExperience({
       id: props.experiences.length + 1,
-      job_title: "",
-      organization_name: "",
-      start_year: "",
-      end_year: "",
+      jobTitle: "",
+      organizationName: "",
+      startYear: "",
+      endYear: "",
     });
   };
 
@@ -56,13 +90,116 @@ const WorkExperienceComponent = (props) => {
       <form onSubmit={handleSubmit(handleNext)}>
         {props.experiences.map((experience) => {
           return (
-            <EachExperienceComponent
-              key={experience.id}
-              experience={experience}
-              count={experience.id}
-              register={register}
-              errors={errors}
-            />
+            <div key={experience.id} className="experience-cont">
+              <h3 className="experience-heading">Experience {experience.id}</h3>
+              <Divider sx={{ margin: "5px 0px" }} />
+              <div className="experience-form-cont">
+                <InputComponent
+                  title={"Job Title"}
+                  type={"text"}
+                  name={"jobTitle" + experience.id}
+                  register={register}
+                  multiline={false}
+                  // value={props.experience.job_title}
+                  // setValue={handleJobTitle}
+                  error={Boolean(errors[`jobTitle${experience.id}`])}
+                  errorMessage={
+                    errors[`jobTitle${experience.id}`]
+                      ? errors[`jobTitle${experience.id}`].message
+                      : null
+                  }
+                />
+                <InputComponent
+                  title={"Organization Name"}
+                  type={"text"}
+                  name={"organizationName" + experience.id}
+                  register={register}
+                  multiline={false}
+                  // value={props.experience.organization_name}
+                  // setValue={handleOrgName}
+                  error={
+                    errors[`organizationName${experience.id}`] ? true : false
+                  }
+                  errorMessage={
+                    errors[`organizationName${experience.id}`]
+                      ? errors[`organizationName${experience.id}`].message
+                      : null
+                  }
+                />
+                <SelectComponent
+                  title={"Start Year"}
+                  errorMessage={
+                    errors[`startYear${experience.id}`]
+                      ? errors[`startYear${experience.id}`].message
+                      : null
+                  }
+                  error={errors[`startYear${experience.id}`] ? true : false}>
+                  <Controller
+                    render={(props) => {
+                      return (
+                        <Select
+                          value={props.field.value}
+                          onChange={props.field.onChange}
+                          error={
+                            errors
+                              ? errors[`startYear${experience.id}`]
+                                ? true
+                                : false
+                              : false
+                          }>
+                          {years.map((year, index) => {
+                            return (
+                              <MenuItem key={index} value={year}>
+                                {year}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      );
+                    }}
+                    name={`startYear${experience.id}`}
+                    control={control}
+                    rules={{ required: "*Please select start year" }}
+                    defaultValue={experience.startYear}
+                  />
+                </SelectComponent>
+                <SelectComponent
+                  title={"End Year"}
+                  errorMessage={
+                    errors[`endYear${experience.id}`]
+                      ? errors[`endYear${experience.id}`].message
+                      : null
+                  }
+                  error={errors[`endYear${experience.id}`] ? true : false}>
+                  <Controller
+                    render={(props) => (
+                      <Select
+                        value={props.field.value}
+                        onChange={props.field.onChange}
+                        error={
+                          errors
+                            ? errors[`endYear${experience.id}`]
+                              ? true
+                              : false
+                            : false
+                        }>
+                        {years.map((year, index) => {
+                          return (
+                            <MenuItem key={index} value={year}>
+                              {year}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    )}
+                    name={"endYear" + experience.id}
+                    control={control}
+                    rules={{ required: "*Please select end year" }}
+                    defaultValue={experience.endYear}
+                  />
+                </SelectComponent>
+              </div>
+            </div>
           );
         })}
         {props.experiences.length === 2 ? null : (

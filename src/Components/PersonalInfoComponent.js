@@ -12,18 +12,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import {
-  editAddress,
-  editCity,
-  editEmail,
-  editFirstName,
-  editLastName,
-  editMobile,
-  editObjective,
-  editPostalCode,
-  editState,
-  setProfileImage,
-} from "../Redux/actions";
+import { addPersonalInfo } from "../Redux/actions";
 import { useForm } from "react-hook-form";
 
 const mapStateToProps = (state) => ({
@@ -31,17 +20,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSetProfileImage: (img) => dispatch(setProfileImage(img)),
-  setFirstName: (first_name) => dispatch(editFirstName(first_name)),
-  setLastName: (last_name) => dispatch(editLastName(last_name)),
-  setEmail: (email) => dispatch(editEmail(email)),
-  setMobile: (mobile) => dispatch(editMobile(mobile)),
-  setAddress: (address) => dispatch(editAddress(address)),
-  setCity: (city) => dispatch(editCity(city)),
-  setStateName: (state) => dispatch(editState(state)),
-  setPostalCode: (postal_code) => dispatch(editPostalCode(postal_code)),
-  setObjective: (objective) => dispatch(editObjective(objective)),
+  onAddPersonalInfo: (details) => dispatch(addPersonalInfo(details)),
 });
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -74,6 +55,7 @@ const PersonalInfoComponent = (props) => {
 
   const handleNext = (data) => {
     setLoading(true);
+    props.onAddPersonalInfo(data);
 
     setTimeout(() => {
       setLoading(false);
@@ -118,7 +100,7 @@ const PersonalInfoComponent = (props) => {
   };
 
   // const profileImg = sotreImage.map((ele) => ele.img);
-  // console.log(profileImg);
+  console.log(props.personalInfo, errors);
 
   return (
     <Paper className="personal-info-paper" elevation={3}>
@@ -126,8 +108,8 @@ const PersonalInfoComponent = (props) => {
         sx={{ width: 120, height: 120, marginBottom: 1 }}
         alt="profile img"
         src={
-          props.personalInfo.profile_img.length
-            ? props.personalInfo.profile_img
+          props.personalInfo.profileImg.length
+            ? props.personalInfo.profileImg
             : `https://img.icons8.com/color/344/test-account.png`
         }
       />
@@ -170,8 +152,8 @@ const PersonalInfoComponent = (props) => {
             name={"firstName"}
             register={register}
             multiline={false}
-            value={props.personalInfo.first_name}
-            setValue={props.setFirstName}
+            // value={props.personalInfo.first_name}
+            // setValue={props.setFirstName}
             error={errors.firstName ? true : false}
             errorMessage={errors.firstName ? errors.firstName.message : null}
           />
@@ -181,8 +163,8 @@ const PersonalInfoComponent = (props) => {
             name={"lastName"}
             register={register}
             multiline={false}
-            value={props.personalInfo.last_name}
-            setValue={props.setLastName}
+            // value={props.personalInfo.last_name}
+            // setValue={props.setLastName}
             error={errors.lastName ? true : false}
             errorMessage={errors.lastName ? errors.lastName.message : null}
           />
@@ -192,8 +174,8 @@ const PersonalInfoComponent = (props) => {
             name={"email"}
             register={register}
             multiline={false}
-            value={props.personalInfo.email}
-            setValue={props.setEmail}
+            // value={props.personalInfo.email}
+            // setValue={props.setEmail}
             error={errors.email ? true : false}
             errorMessage={errors.email ? errors.email.message : null}
           />
@@ -203,8 +185,8 @@ const PersonalInfoComponent = (props) => {
             name={"mobile"}
             register={register}
             multiline={false}
-            value={props.personalInfo.mobile}
-            setValue={props.setMobile}
+            // value={props.personalInfo.mobile}
+            // setValue={props.setMobile}
             error={errors.mobile ? true : false}
             errorMessage={errors.mobile ? errors.mobile.message : null}
           />
@@ -215,8 +197,8 @@ const PersonalInfoComponent = (props) => {
           name={"address"}
           register={register}
           multiline={false}
-          value={props.personalInfo.address}
-          setValue={props.setAddress}
+          // value={props.personalInfo.address}
+          // setValue={props.setAddress}
           error={errors.address ? true : false}
           errorMessage={errors.address ? errors.address.message : null}
         />
@@ -227,8 +209,8 @@ const PersonalInfoComponent = (props) => {
             name={"city"}
             register={register}
             multiline={false}
-            value={props.personalInfo.city}
-            setValue={props.setCity}
+            // value={props.personalInfo.city}
+            // setValue={props.setCity}
             error={errors.city ? true : false}
             errorMessage={errors.city ? errors.city.message : null}
           />
@@ -238,8 +220,8 @@ const PersonalInfoComponent = (props) => {
             name={"state"}
             register={register}
             multiline={false}
-            value={props.personalInfo.state_name}
-            setValue={props.setStateName}
+            // value={props.personalInfo.state_name}
+            // setValue={props.setStateName}
             error={errors.state ? true : false}
             errorMessage={errors.state ? errors.state.message : null}
           />
@@ -249,8 +231,8 @@ const PersonalInfoComponent = (props) => {
             name={"postalCode"}
             register={register}
             multiline={false}
-            value={props.personalInfo.postal_code}
-            setValue={props.setPostalCode}
+            // value={props.personalInfo.postal_code}
+            // setValue={props.setPostalCode}
             error={errors.postalCode ? true : false}
             errorMessage={errors.postalCode ? errors.postalCode.message : null}
           />
@@ -260,9 +242,9 @@ const PersonalInfoComponent = (props) => {
           type={"text"}
           name={"objective"}
           register={register}
-          multiline={true}
-          value={props.personalInfo.objective}
-          setValue={props.setObjective}
+          // multiline={true}
+          // value={props.personalInfo.objective}
+          // setValue={props.setObjective}
           error={errors.objective ? true : false}
           errorMessage={errors.objective ? errors.objective.message : null}
         />

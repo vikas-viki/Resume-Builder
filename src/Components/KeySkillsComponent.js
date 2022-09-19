@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onAddNewSkill: () => dispatch(addNewSkills()),
-  onEditSkill: (skill, index) => dispatch(editSkill({ skill, index })),
+  onEditSkill: (skills) => dispatch(editSkill(skills)),
   onDeleteSkill: (index) => dispatch(deleteSkill(index)),
 });
 
@@ -27,8 +27,9 @@ function KeySkillsComponent(props) {
   } = useForm();
 
   const handlePreview = (data) => {
-    // console.log(data);
+    console.log(data);
     setLoading(true);
+    props.onEditSkill(Object.values(data));
 
     setTimeout(() => {
       setLoading(false);
@@ -39,6 +40,8 @@ function KeySkillsComponent(props) {
   const handleBack = () => {
     props.setTab(props.tab - 1);
   };
+
+  console.log(props.skills, errors);
 
   return (
     <Paper elevation={3} className="key-skills-paper">
@@ -54,8 +57,8 @@ function KeySkillsComponent(props) {
                   name={`skill${index + 1}`}
                   register={register}
                   multiline={false}
-                  value={skill}
-                  setValue={(skill) => props.onEditSkill(skill, index)}
+                  // value={skill}
+                  // setValue={(skill) => props.onEditSkill(skill, index)}
                   error={errors[`skill${index + 1}`] ? true : false}
                   errorMessage={
                     errors[`skill${index + 1}`]
