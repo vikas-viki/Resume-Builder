@@ -1,4 +1,4 @@
-import { Avatar, Button, Divider, Paper } from "@mui/material";
+import { Avatar, Button, Divider, Paper, Snackbar } from "@mui/material";
 import React, { useState } from "react";
 import "../Styles/PersonalInfoComponent.css";
 import BackNextBtnComponent from "./BackNextBtnComponent";
@@ -34,6 +34,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 const PersonalInfoComponent = (props) => {
   const [loading, setLoading] = useState(false);
+  const [imgSnackbar, setImgSnackbar] = useState(false);
+  const [vertical, setVertical] = useState("top");
+  const [horizontal, setHorizontal] = useState("center");
 
   const {
     register,
@@ -41,7 +44,9 @@ const PersonalInfoComponent = (props) => {
     formState: { errors },
   } = useForm();
 
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState(
+    props.personalInfo.profileImg.length ? props.personalInfo.profileImg : ""
+  );
   const [sotreImage, setSotreImage] = useState([]);
 
   const [open, setOpen] = useState(false);
@@ -54,13 +59,18 @@ const PersonalInfoComponent = (props) => {
   };
 
   const handleNext = (data) => {
-    setLoading(true);
-    props.onAddPersonalInfo(data);
+    console.log(img.length);
+    if (img.length) {
+      setLoading(true);
+      props.onAddPersonalInfo({ profileImg: img, ...data });
 
-    setTimeout(() => {
-      setLoading(false);
-      props.setTab(props.tab + 1);
-    }, 1000);
+      setTimeout(() => {
+        setLoading(false);
+        props.setTab(props.tab + 1);
+      }, 1000);
+    } else {
+      setImgSnackbar(true);
+    }
   };
 
   const BootstrapDialogTitle = (props) => {
@@ -85,6 +95,7 @@ const PersonalInfoComponent = (props) => {
       </DialogTitle>
     );
   };
+
   const onCrop = (view) => {
     setImg(view);
   };
@@ -95,8 +106,16 @@ const PersonalInfoComponent = (props) => {
 
   const saveImage = () => {
     setSotreImage([{ img }]);
-    props.onSetProfileImage(img);
+    // props.onSetProfileImage(img);
     setOpen(false);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setImgSnackbar(false);
   };
 
   // const profileImg = sotreImage.map((ele) => ele.img);
@@ -108,9 +127,7 @@ const PersonalInfoComponent = (props) => {
         sx={{ width: 120, height: 120, marginBottom: 1 }}
         alt="profile img"
         src={
-          props.personalInfo.profileImg.length
-            ? props.personalInfo.profileImg
-            : `https://img.icons8.com/color/344/test-account.png`
+          img.length ? img : `https://img.icons8.com/color/344/test-account.png`
         }
       />
       <div>
@@ -257,6 +274,14 @@ const PersonalInfoComponent = (props) => {
           backTitle={"Back"}
         />
       </form>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={imgSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        message="Please select a profile image"
+        key={vertical + horizontal}
+      />
     </Paper>
   );
 };

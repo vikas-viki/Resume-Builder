@@ -46,6 +46,8 @@ const PreviewComponent = (props) => {
       report.html(document.querySelector("#report")).then(() => {
         report.save(`${resumeName}.pdf`);
         setLoading(false);
+        //Saving the user data in localstorage
+
         //Redirect user to the myResumes page
       });
     }
