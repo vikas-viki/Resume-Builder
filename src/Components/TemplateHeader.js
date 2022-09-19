@@ -17,14 +17,12 @@ const TemplateHeader = (props) => {
             <h2
               style={{ color: props.primaryColor }}
               className="template-user-name">
-              {props.personalInfo.first_name +
-                " " +
-                props.personalInfo.last_name}
+              {props.personalInfo.firstName + " " + props.personalInfo.lastName}
             </h2>
             <p
               style={{ color: props.secondaryColor }}
               className="template-user-designation">
-              {props.workExperience[0].job_title}
+              {props.workExperience[0].jobTitle}
             </p>
           </div>
         </div>

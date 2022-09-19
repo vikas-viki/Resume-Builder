@@ -63,7 +63,10 @@ export const personalInfoReducer = (
 ) => {
   switch (action.type) {
     case actionTypes.ADDPERSONALINFO:
-      return { ...state, personalInfo: { ...state, ...action.payload } };
+      return {
+        ...state,
+        personalInfo: { ...state.personalInfo, ...action.payload },
+      };
     default:
       return state;
   }

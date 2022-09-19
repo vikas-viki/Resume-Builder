@@ -9,7 +9,7 @@ const TemplateEducationCompnent = (props) => {
         {props.education.university}
       </span>
       <span className="education-start-end">
-        ({props.education.start_year} - {props.education.end_year})
+        ({props.education.startYear} - {props.education.endYear})
       </span>
     </h3>
   );

@@ -7,12 +7,12 @@ const TemplateOneExperienceComponent = (props) => {
     <Container className="template-one-experience-comp">
       <li className="template-one-experience-comp">
         <h3 className="experience-heading">
-          {props.experience.job_title}{" "}
+          {props.experience.jobTitle}{" "}
           <span className="experience-org-name">
-            {props.experience.organization_name}
+            {props.experience.organizationName}
           </span>
           <span className="experience-start-end">
-            ({props.experience.start_year} - {props.experience.end_year})
+            ({props.experience.startYear} - {props.experience.endYear})
           </span>
         </h3>
       </li>
