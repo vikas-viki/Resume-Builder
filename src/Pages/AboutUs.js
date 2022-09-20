@@ -12,20 +12,7 @@ export default function ButtonMUI() {
     <>
       <Navbar />
       <Stack p={{ xs: "15px", sm: "25px", md: "40px", lg: "60px " }}>
-        <Typography
-          sx={{
-            fontSize: {
-              xs: "30px",
-              sm: "40px",
-              md: '43px',
-              lg: "46px",
-            },
-            fontWeight:'400'
-          }}
-          variant="h2"
-        >
-          Resume Builder
-        </Typography>
+        <h2 className="template-header-title">Resume Builder</h2>
         <Stack
           className="midContainer"
           direction={{
@@ -35,14 +22,13 @@ export default function ButtonMUI() {
             lg: "row",
           }}
           spacing={{ xs: 1, sm: 2, md: 4 }}
-          mt="20px"
-        >
+          mt="20px">
           <Typography
             sx={{
               fontSize: {
                 xs: "13px",
                 sm: "15px",
-                md: '17px',
+                md: "17px",
                 lg: "19px",
               },
               paddingRight: {
@@ -50,24 +36,21 @@ export default function ButtonMUI() {
                 sm: "18px",
                 lg: "25px",
               },
-            }}
-          >
-            <i>
-              Resume Builder offers free, HR-approved resume templates to help
-              you create a professional resume in minutes. Choose from several
-              template options and even pre-populate a resume from your LinkedIn
-              profile. Create an account to save your progress and multiple
-              versions, plus download as a PDF.Resume Builder offers free,
-              HR-approved resume templates to help you create a professional
-              resume in minutes. Choose from several template options and even
-              pre-populate a resume from your LinkedIn profile. Create an
-              account to save your progress and multiple versions, plus download
-              as a PDF.Resume Builder offers free, HR-approved resume templates
-              to help you create a professional resume in minutes. Choose from
-              several template options and even pre-populate a resume from your
-              LinkedIn profile. Create an account to save your progress and
-              multiple versions, plus download as a PDF.
-            </i>
+            }}>
+            Resume Builder offers free, HR-approved resume templates to help you
+            create a professional resume in minutes. Choose from several
+            template options and even pre-populate a resume from your LinkedIn
+            profile. Create an account to save your progress and multiple
+            versions, plus download as a PDF.Resume Builder offers free,
+            HR-approved resume templates to help you create a professional
+            resume in minutes. Choose from several template options and even
+            pre-populate a resume from your LinkedIn profile. Create an account
+            to save your progress and multiple versions, plus download as a
+            PDF.Resume Builder offers free, HR-approved resume templates to help
+            you create a professional resume in minutes. Choose from several
+            template options and even pre-populate a resume from your LinkedIn
+            profile. Create an account to save your progress and multiple
+            versions, plus download as a PDF.
           </Typography>
           <Stack>
             <img
@@ -82,13 +65,12 @@ export default function ButtonMUI() {
               fontSize: {
                 xs: "22px",
                 sm: "25px",
-                md:'27px',
+                md: "27px",
                 lg: "30px",
               },
               fontWeight: "400",
               color: "dark",
-            }}
-          >
+            }}>
             Share with your friends
           </Typography>
           <Box className="icons">
