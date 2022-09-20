@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "../Styles/PreviewComponent.css";
 import { connect } from "react-redux";
 import { templates } from "../Data/templates";
-import BackNextBtnComponent from "./BackNextBtnComponent";
 import JsPDF from "jspdf";
 
 const mapStateToProps = (state) => ({
@@ -47,8 +46,37 @@ const PreviewComponent = (props) => {
         report.save(`${resumeName}.pdf`);
         setLoading(false);
         //Saving the user data in localstorage
+        let resumes = window.localStorage.getItem("resumes");
+        console.log(resumes);
+        if (resumes) {
+          let newResumes = JSON.parse(resumes);
+
+          newResumes.push({
+            id: props.selectedTemplateId,
+            personalInfo: props.personalInfo,
+            experiences: props.experiences,
+            educationInfo: props.educationInfo,
+            skills: props.skills,
+          });
+
+          window.localStorage.setItem("resumes", JSON.stringify(newResumes));
+        } else {
+          window.localStorage.setItem(
+            "resumes",
+            JSON.stringify([
+              {
+                id: props.selectedTemplateId,
+                personalInfo: props.personalInfo,
+                experiences: props.experiences,
+                educationInfo: props.educationInfo,
+                skills: props.skills,
+              },
+            ])
+          );
+        }
 
         //Redirect user to the myResumes page
+        window.location.reload();
       });
     }
   };

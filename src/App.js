@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import DetailsFilling from "./Pages/DetailsFilling";
 import CheckSelectedId from "./Components/CheckSelectedId";
 import AboutUs from "./Components/AboutUs";
+import MyResumes from "./Pages/MyResumes";
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
           }
         />
 
-        {/* Preview Page */}
+        {/* My Resumes Page */}
+        <Route exact path="/my/resumes" element={<MyResumes />} />
 
         {/* About Us Page */}
         <Route exact path="/about-us" element={<AboutUs />} />

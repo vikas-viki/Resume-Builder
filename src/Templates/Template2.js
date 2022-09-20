@@ -27,7 +27,7 @@ const Template2 = (props) => {
   const skills = props.skills ? props.skills : data.key_skills;
 
   return (
-    <Paper elevation={3}>
+    <Paper id="report" elevation={3}>
       <TemplateHeader
         primaryColor={"white"}
         secondaryColor={"white"}
