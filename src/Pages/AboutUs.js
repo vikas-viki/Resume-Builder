@@ -3,7 +3,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import EmailTwoToneIcon from "@mui/icons-material/EmailTwoTone";
+import EmailIcon from "@mui/icons-material/Email";
 import { Box } from "@mui/system";
 import Navbar from "../Components/Common/Navbar";
 
@@ -90,8 +90,9 @@ export default function ButtonMUI() {
               sx={{ fontSize: "40px", paddingLeft: "15px" }}
               color="info"
             />
-            <EmailTwoToneIcon
-              sx={{ fontSize: "40px", paddingLeft: "15px", color: "grey" }}
+            <EmailIcon
+              sx={{ fontSize: "40px", paddingLeft: "15px" }}
+              color="error"
             />
           </Box>
         </Box>
