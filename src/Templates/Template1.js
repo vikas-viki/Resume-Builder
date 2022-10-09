@@ -1,8 +1,7 @@
-import { Paper } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import React from "react";
 import "../Styles/Template1.css";
 import TemplateHeader from "../Components/TemplateHeader";
-import { Box, Container } from "@mui/system";
 import TemplateHeading from "../Components/TemplateHeading";
 import TemplateOneExperienceComponent from "../Components/TemplateOneExperienceComponent";
 import { data } from "../Data/data";
@@ -10,12 +9,12 @@ import TemplateEducationComponent from "../Components/TemplateEducationComponent
 import TemplateKeySkillComponent from "../Components/TemplateKeySkillComponent";
 
 const Template1 = (props) => {
-  console.log(
-    props.personalinfo,
-    props.workexperience,
-    props.educationinfo,
-    props.skills
-  );
+  // console.log(
+  //   props.personalinfo,
+  //   props.workexperience,
+  //   props.educationinfo,
+  //   props.skills
+  // );
   const personalinfo = props.personalinfo
     ? props.personalinfo
     : data.personal_info;
@@ -28,7 +27,22 @@ const Template1 = (props) => {
   const skills = props.skills ? props.skills : data.key_skills;
 
   return (
-    <Paper id="report" elevation={3}>
+    <Paper sx={{
+      width:{
+        xs: '100%',
+        sm: '90%',
+        md: '450px',
+        lg: '500px',
+        xl: '550px'
+      },
+      height: {
+        xs: '600px',
+        sm: '600px',
+        md: '600px',
+        lg: '650px',
+        xl: '700px'
+      }
+    }} id='report' elevation={3}>
       <TemplateHeader
         primaryColor={"#C98A55"}
         secondaryColor={"black"}

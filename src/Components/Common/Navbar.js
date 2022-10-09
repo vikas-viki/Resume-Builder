@@ -72,12 +72,13 @@ function Navbar(props) {
     <>
       <Box sx={{ display: "flex" }}>
         <ThemeProvider theme={logoTheme}>
-          <AppBar component="nav" sx={{ color: "primary", boxShadow: "none" }}>
+          <AppBar component="nav" position="sticky" className="appbar" sx={{ color: "primary", boxShadow: "none" }}>
             <Toolbar id="toolbar">
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
+                id="icon"
                 onClick={handleDrawerToggle}
                 sx={{ mr: 2, display: { sm: "none" } }}>
                 <MenuIcon />
@@ -114,7 +115,7 @@ function Navbar(props) {
                 <NavLink to="/my/resumes" className="nav-link" color="inherit">
                   My Resumes
                 </NavLink>
-                <NavLink to="/about-us" className="nav-link" color="inherit">
+                <NavLink to="/about-us" className="nav-link aboutUs" color="inherit">
                   About Us
                 </NavLink>
               </Box>

@@ -2,11 +2,34 @@
   width: 100%;
 }
 
-.my-resumes-container {
-  width: 100%;
-  padding: 30px 70px;
-  display: flex;
-  flex-wrap: wrap;
+.resume{
+  position: relative;
+}
+.resume:hover .black-screen {
+  visibility: visible;
+}
+
+.resume:hover {
+  cursor: pointer;
+}
+.resume:hover .MuiButtonBase-root.MuiButton-root.use-template-btn {
+  visibility: visible;
+  z-index: 5;
+}
+
+
+.MuiButtonBase-root.MuiButton-root.use-template-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  visibility: hidden;
+  text-transform: capitalize;
+}
+
+.resume:hover .MuiButtonBase-root.MuiButton-root {
+  visibility: visible;
 }
 
 .my-resumes-container .no-resumes-container {
@@ -19,4 +42,10 @@
 .my-resumes-container .no-resumes-container .no-resumes-text {
   font-size: 15px;
   font-weight: 500;
+}
+@media screen and (max-width: 1050px) {
+  .my-resumes-container{
+    justify-content: center;
+    padding: 40px 30px!important;
+  }
 }

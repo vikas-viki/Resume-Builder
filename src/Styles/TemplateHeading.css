@@ -9,3 +9,9 @@
   height: 2px;
   margin-bottom: 8px;
 }
+
+@media screen and (max-width: 500px) {
+  .professional-experience-heading {
+    font-size: 13px;
+  }
+}

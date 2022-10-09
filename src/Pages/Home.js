@@ -24,7 +24,7 @@ const Home = (props) => {
     navigate("/template/fill-details");
   };
 
-  console.log(props.selectedTemplateId);
+  // console.log(props.selectedTemplateId);
 
   return (
     <div className="home">
@@ -47,7 +47,7 @@ const Home = (props) => {
           }}>
           {templates.map((template) => {
             return (
-              <div key={template.id} className="templates-img-cont">
+              <div key={template.id} id="template" className="templates-img-cont">
                 <img
                   className="template-img"
                   src={template.template_img}

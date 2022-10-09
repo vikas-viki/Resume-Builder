@@ -86,10 +86,17 @@ const PreviewComponent = (props) => {
   };
 
   return (
-    <Container sx={{ padding: "60px 80px" }} className="preview-container">
+    <Container
+      sx={{
+        padding: {
+          xs: '40px 20px',
+          md: "60px 80px"
+        }
+      }}
+      className="preview-container">
       <h2 className="preview-header-title">Resume Preview</h2>
       <div className="resume-preview-grid-container">
-        <div className="resume-preview-grid-item">
+        <div className="resume-preview-grid-item" id='previewresume'>
           {templates.map((template, index) => {
             return getTemplate(template, index);
           })}
@@ -101,6 +108,7 @@ const PreviewComponent = (props) => {
               value={resumeName}
               onChange={(e) => setResumeName(e.target.value)}
               className="resume-name-field"
+              sx={{width:'70%'}}
               id="outlined-basic"
               variant="outlined"
               error={error.length > 0 ? true : false}

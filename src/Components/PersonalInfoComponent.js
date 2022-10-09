@@ -1,5 +1,5 @@
 import { Avatar, Button, Divider, Paper, Snackbar } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/PersonalInfoComponent.css";
 import BackNextBtnComponent from "./BackNextBtnComponent";
 import InputComponent from "./InputComponent";
@@ -77,7 +77,7 @@ const PersonalInfoComponent = (props) => {
     const { children, onClose, ...other } = props;
 
     return (
-      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      <DialogTitle  sx={{ m: 0, p: 2 }} {...other}>
         {children}
         {onClose ? (
           <IconButton
@@ -118,6 +118,25 @@ const PersonalInfoComponent = (props) => {
     setImgSnackbar(false);
   };
 
+  // getting windows width
+  const getWindowSize = () => {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  };
+  
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   // const profileImg = sotreImage.map((ele) => ele.img);
   console.log(props.personalInfo, errors);
 
@@ -148,8 +167,8 @@ const PersonalInfoComponent = (props) => {
           </BootstrapDialogTitle>
           <DialogContent>
             <Avatar1
-              width={400}
-              height={300}
+              width={windowSize.innerWidth>900&& 400}
+              height={windowSize.innerWidth>500? 400: 150}
               onCrop={onCrop}
               onClose={onClose}
             />
