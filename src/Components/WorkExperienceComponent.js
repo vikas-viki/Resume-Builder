@@ -45,7 +45,7 @@ const WorkExperienceComponent = (props) => {
   };
 
   const handleNext = (data) => {
-    // console.log(Object.entries(data));
+    console.log(data);
     setLoading(true);
 
     let experienceOne = {};
@@ -60,10 +60,15 @@ const WorkExperienceComponent = (props) => {
       }
     }
 
+    // console.log(experienceOne, experienceTwo);
+
     if (Object.keys(experienceTwo).length) {
-      props.setAllExperience([experienceOne, experienceTwo]);
+      props.setAllExperience([
+        { ...experienceOne, id: 1 },
+        { ...experienceTwo, id: 2 },
+      ]);
     } else {
-      props.setAllExperience([experienceOne]);
+      props.setAllExperience([{ ...experienceOne, id: 1 }]);
     }
 
     setTimeout(() => {
@@ -84,6 +89,26 @@ const WorkExperienceComponent = (props) => {
     });
   };
 
+  const editJobTitleExperience = (value, id) => {
+    const newExperiences = props.experiences.map((experience) => {
+      if (experience.id === id) {
+        return { ...experience, jobTitle: value };
+      } else return experience;
+    });
+
+    props.setAllExperience(newExperiences);
+  };
+
+  const editOrganisationNameExperience = (value, id) => {
+    const newExperiences = props.experiences.map((experience) => {
+      if (experience.id === id) {
+        return { ...experience, organizationName: value };
+      } else return experience;
+    });
+
+    props.setAllExperience(newExperiences);
+  };
+
   return (
     <Paper className="work-experience-paper" elevation={3}>
       <h2 className="work-experience-heading">Work Experience</h2>
@@ -100,8 +125,10 @@ const WorkExperienceComponent = (props) => {
                   name={"jobTitle" + experience.id}
                   register={register}
                   multiline={false}
-                  // value={props.experience.job_title}
-                  // setValue={handleJobTitle}
+                  value={experience.jobTitle}
+                  setValue={(value) =>
+                    editJobTitleExperience(value, experience.id)
+                  }
                   error={Boolean(errors[`jobTitle${experience.id}`])}
                   errorMessage={
                     errors[`jobTitle${experience.id}`]
@@ -115,8 +142,10 @@ const WorkExperienceComponent = (props) => {
                   name={"organizationName" + experience.id}
                   register={register}
                   multiline={false}
-                  // value={props.experience.organization_name}
-                  // setValue={handleOrgName}
+                  value={experience.organizationName}
+                  setValue={(value) =>
+                    editOrganisationNameExperience(value, experience.id)
+                  }
                   error={
                     errors[`organizationName${experience.id}`] ? true : false
                   }

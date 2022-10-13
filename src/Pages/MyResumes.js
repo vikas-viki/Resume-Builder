@@ -6,9 +6,31 @@ import BlackScreen from "../Components/BlackScreen";
 import { templates } from "../Data/templates";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { Box } from "@mui/system";
+import { connect } from "react-redux";
+import {
+  addAllExperience,
+  addEducation,
+  addPersonalInfo,
+  editSkill,
+  selectTemplate,
+} from "../Redux/actions";
+import { useNavigate } from "react-router-dom";
+
+const mapStateToProps = (state) => ({
+  selectedTemplateId: state.selectedTemplateReducer.selectedTemplateId,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setSelectedTemplateId: (id) => dispatch(selectTemplate(id)),
+  onAddPersonalInfo: (details) => dispatch(addPersonalInfo(details)),
+  setAllExperience: (experiences) => dispatch(addAllExperience(experiences)),
+  onAddEducation: (details) => dispatch(addEducation(details)),
+  onEditSkill: (skills) => dispatch(editSkill(skills)),
+});
 
 const MyResumes = (props) => {
   const resumes = JSON.parse(window.localStorage.getItem("resumes"));
+  const navigate = useNavigate();
 
   const getTemplate = (resume) => {
     let template = templates.find(
@@ -28,56 +50,78 @@ const MyResumes = (props) => {
     return TemplateComp;
   };
 
+  const setUserData = (resume) => {
+    console.log(resume);
+    //set personal info
+
+    props.onAddPersonalInfo(resume.personalInfo);
+
+    //set work experience
+
+    props.setAllExperience(resume.experiences);
+
+    //set education info
+
+    props.onAddEducation(resume.educationInfo);
+
+    //set skills
+
+    props.onEditSkill(resume.skills);
+  };
+
+  const navigateToFillDetails = (resume) => {
+    props.setSelectedTemplateId(resume.id);
+    setUserData(resume);
+    navigate("/template/fill-details");
+  };
+
+  // console.log(resumes);
+
   return (
     <div className="my-resumes">
       <Navbar active={"My Resumes"} />
-      <Box className='my-resumes-container'
+      <Box
+        className="my-resumes-container"
         sx={{
           width: {
             sm: "80%",
             md: "85%",
-            lg: "90%",
-            xl: "90%"
+            lg: "100%",
+            xl: "100%",
           },
           padding: "50px 70px",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           flexWrap: "wrap",
-          gap: '30px',
-        }}
-
-      >
+          gap: "30px",
+        }}>
         {resumes ? (
           resumes.map((resume, index) => {
-            return <>
+            return (
               <div className="resume" key={index}>
                 {getTemplate(resume)}
-                < BlackScreen />
+                <BlackScreen />
                 <Button
                   className="use-template-btn"
-                  onClick={console.log("clicked")}
+                  onClick={() => navigateToFillDetails(resume)}
                   size="medium"
                   variant="contained">
-                  Use Template
+                  Edit Template
                 </Button>
               </div>
-            </>
-
+            );
           })
-        )
-
-          : (
-            <div className="no-resumes-container">
-              <SentimentVeryDissatisfiedIcon fontSize="large" />
-              <p className="no-resumes-text">
-                You do not have any Resumes yet. Make One to view it here.
-              </p>
-            </div>
-          )}
-
+        ) : (
+          <div className="no-resumes-container">
+            <SentimentVeryDissatisfiedIcon fontSize="large" />
+            <p className="no-resumes-text">
+              You do not have any Resumes yet. Make One to view it here.
+            </p>
+          </div>
+        )}
       </Box>
-    </div >
+    </div>
   );
 };
 
-export default MyResumes;
+export default connect(mapStateToProps, mapDispatchToProps)(MyResumes);

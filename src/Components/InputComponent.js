@@ -14,8 +14,8 @@ const InputComponent = (props) => {
         {...props.register(props.name, inputChecks(props.type, props.name))}
         multiline={props.multiline}
         rows={5}
-        // value={props.value}
-        // onChange={(e) => props.setValue(e.target.value.toString())}
+        value={props.value}
+        onChange={(e) => props.setValue(e.target.value.toString())}
         error={props.error}
         helperText={props.errorMessage ? props.errorMessage : null}
       />

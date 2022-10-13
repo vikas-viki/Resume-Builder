@@ -29,7 +29,7 @@ function KeySkillsComponent(props) {
   const handlePreview = (data) => {
     console.log(data);
     setLoading(true);
-    props.onEditSkill(Object.values(data));
+    // props.onEditSkill(Object.values(data));
 
     setTimeout(() => {
       setLoading(false);
@@ -39,6 +39,16 @@ function KeySkillsComponent(props) {
 
   const handleBack = () => {
     props.setTab(props.tab - 1);
+  };
+
+  const onEditSkill = (value, id) => {
+    const newSkills = props.skills.map((skill, index) => {
+      if (index === id) {
+        return value;
+      } else return skill;
+    });
+
+    props.onEditSkill(newSkills);
   };
 
   console.log(props.skills, errors);
@@ -57,8 +67,8 @@ function KeySkillsComponent(props) {
                   name={`skill${index + 1}`}
                   register={register}
                   multiline={false}
-                  // value={skill}
-                  // setValue={(skill) => props.onEditSkill(skill, index)}
+                  value={skill}
+                  setValue={(skill) => onEditSkill(skill, index)}
                   error={errors[`skill${index + 1}`] ? true : false}
                   errorMessage={
                     errors[`skill${index + 1}`]
