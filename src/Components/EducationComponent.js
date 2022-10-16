@@ -68,7 +68,9 @@ const EducationComponent = (props) => {
             register={register}
             multiline={false}
             value={props.educationInfo.domain}
-            // setValue={props.onEditType}
+            setValue={(value) =>
+              props.onAddEducation({ ...props.educationInfo, domain: value })
+            }
             error={errors.domain ? true : false}
             errorMessage={errors.domain ? errors.domain.message : null}
           />
@@ -80,7 +82,12 @@ const EducationComponent = (props) => {
             register={register}
             multiline={false}
             value={props.educationInfo.university}
-            // setValue={props.onEditUniversity}
+            setValue={(value) =>
+              props.onAddEducation({
+                ...props.educationInfo,
+                university: value,
+              })
+            }
             error={errors.university ? true : false}
             errorMessage={errors.university ? errors.university.message : null}
           />
@@ -91,7 +98,9 @@ const EducationComponent = (props) => {
             register={register}
             multiline={false}
             value={props.educationInfo.degree}
-            // setValue={props.onEditDegree}
+            setValue={(value) =>
+              props.onAddEducation({ ...props.educationInfo, degree: value })
+            }
             error={errors.degree ? true : false}
             errorMessage={errors.degree ? errors.degree.message : null}
           />

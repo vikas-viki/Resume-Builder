@@ -10,6 +10,15 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import JsPDF from "jspdf";
+import { connect } from "react-redux";
+import {
+  addAllExperience,
+  addEducation,
+  addPersonalInfo,
+  editSkill,
+  selectTemplate,
+} from "../Redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,8 +28,22 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+
+const mapStateToProps = (state) => ({
+  selectedTemplateId: state.selectedTemplateReducer.selectedTemplateId,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setSelectedTemplateId: (id) => dispatch(selectTemplate(id)),
+  onAddPersonalInfo: (details) => dispatch(addPersonalInfo(details)),
+  setAllExperience: (experiences) => dispatch(addAllExperience(experiences)),
+  onAddEducation: (details) => dispatch(addEducation(details)),
+  onEditSkill: (skills) => dispatch(editSkill(skills)),
+});
+
 const MyResumes = (props) => {
   const resumes = JSON.parse(window.localStorage.getItem("resumes"));
+  const navigate = useNavigate();
 
   const getTemplate = (resume) => {
     let template = templates.find(
@@ -61,6 +84,33 @@ const MyResumes = (props) => {
       // // console.log(resumes)
     })
   }
+
+  const setUserData = (resume) => {
+    console.log(resume);
+    //set personal info
+
+    props.onAddPersonalInfo(resume.personalInfo);
+
+    //set work experience
+
+    props.setAllExperience(resume.experiences);
+
+    //set education info
+
+    props.onAddEducation(resume.educationInfo);
+
+    //set skills
+
+    props.onEditSkill(resume.skills);
+  };
+
+  const navigateToFillDetails = (resume) => {
+    props.setSelectedTemplateId(resume.id);
+    setUserData(resume);
+    navigate("/template/fill-details");
+  };
+
+  // console.log(resumes);
   return (
     <>
       <Navbar active={"My Resumes"} />
@@ -71,7 +121,7 @@ const MyResumes = (props) => {
             alignItems="center"
             className="grid"
           >
-            {resumes.length >=1 ? (
+            {resumes.length >= 1 ? (
               resumes.map((resume, index) => {
                 return <Grid item className={`resume `} id={`${index}resume`} margin={2} key={index}>
                   <Item>{getTemplate(resume)}
@@ -98,6 +148,13 @@ const MyResumes = (props) => {
                         variant="contained">
                         Delete
                       </Button>
+                      <Button
+                        className="use-template-btn"
+                        onClick={() => navigateToFillDetails(resume)}
+                        size="medium"
+                        variant="contained">
+                        Edit Template
+                      </Button>
                     </div>
                   </Item>
                 </Grid>
@@ -117,9 +174,9 @@ const MyResumes = (props) => {
 
           </Grid>
         </Box>
-      </div >
+      </div>
     </>
   );
 };
 
-export default MyResumes;
+export default connect(mapStateToProps, mapDispatchToProps)(MyResumes);

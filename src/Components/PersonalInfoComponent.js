@@ -77,7 +77,7 @@ const PersonalInfoComponent = (props) => {
     const { children, onClose, ...other } = props;
 
     return (
-      <DialogTitle  sx={{ m: 0, p: 2 }} {...other}>
+      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
         {children}
         {onClose ? (
           <IconButton
@@ -123,7 +123,7 @@ const PersonalInfoComponent = (props) => {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
   };
-  
+
   const [windowSize, setWindowSize] = useState(getWindowSize());
   useEffect(() => {
     function handleWindowResize() {
@@ -167,8 +167,8 @@ const PersonalInfoComponent = (props) => {
           </BootstrapDialogTitle>
           <DialogContent>
             <Avatar1
-              width={windowSize.innerWidth>900&& 400}
-              height={windowSize.innerWidth>500? 400: 150}
+              width={windowSize.innerWidth > 900 && 400}
+              height={windowSize.innerWidth > 500 ? 400 : 150}
               onCrop={onCrop}
               onClose={onClose}
             />
@@ -188,8 +188,13 @@ const PersonalInfoComponent = (props) => {
             name={"firstName"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.first_name}
-            // setValue={props.setFirstName}
+            value={props.personalInfo.firstName}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                firstName: value,
+              })
+            }
             error={errors.firstName ? true : false}
             errorMessage={errors.firstName ? errors.firstName.message : null}
           />
@@ -199,8 +204,13 @@ const PersonalInfoComponent = (props) => {
             name={"lastName"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.last_name}
-            // setValue={props.setLastName}
+            value={props.personalInfo.lastName}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                lastName: value,
+              })
+            }
             error={errors.lastName ? true : false}
             errorMessage={errors.lastName ? errors.lastName.message : null}
           />
@@ -210,8 +220,13 @@ const PersonalInfoComponent = (props) => {
             name={"email"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.email}
-            // setValue={props.setEmail}
+            value={props.personalInfo.email}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                email: value,
+              })
+            }
             error={errors.email ? true : false}
             errorMessage={errors.email ? errors.email.message : null}
           />
@@ -221,8 +236,13 @@ const PersonalInfoComponent = (props) => {
             name={"mobile"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.mobile}
-            // setValue={props.setMobile}
+            value={props.personalInfo.mobile}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                mobile: value,
+              })
+            }
             error={errors.mobile ? true : false}
             errorMessage={errors.mobile ? errors.mobile.message : null}
           />
@@ -233,8 +253,13 @@ const PersonalInfoComponent = (props) => {
           name={"address"}
           register={register}
           multiline={false}
-          // value={props.personalInfo.address}
-          // setValue={props.setAddress}
+          value={props.personalInfo.address}
+          setValue={(value) =>
+            props.onAddPersonalInfo({
+              ...props.personalInfo,
+              address: value,
+            })
+          }
           error={errors.address ? true : false}
           errorMessage={errors.address ? errors.address.message : null}
         />
@@ -245,8 +270,13 @@ const PersonalInfoComponent = (props) => {
             name={"city"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.city}
-            // setValue={props.setCity}
+            value={props.personalInfo.city}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                city: value,
+              })
+            }
             error={errors.city ? true : false}
             errorMessage={errors.city ? errors.city.message : null}
           />
@@ -256,8 +286,13 @@ const PersonalInfoComponent = (props) => {
             name={"state"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.state_name}
-            // setValue={props.setStateName}
+            value={props.personalInfo.state}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                state: value,
+              })
+            }
             error={errors.state ? true : false}
             errorMessage={errors.state ? errors.state.message : null}
           />
@@ -267,8 +302,13 @@ const PersonalInfoComponent = (props) => {
             name={"postalCode"}
             register={register}
             multiline={false}
-            // value={props.personalInfo.postal_code}
-            // setValue={props.setPostalCode}
+            value={props.personalInfo.postalCode}
+            setValue={(value) =>
+              props.onAddPersonalInfo({
+                ...props.personalInfo,
+                postalCode: value,
+              })
+            }
             error={errors.postalCode ? true : false}
             errorMessage={errors.postalCode ? errors.postalCode.message : null}
           />
@@ -279,8 +319,13 @@ const PersonalInfoComponent = (props) => {
           name={"objective"}
           register={register}
           // multiline={true}
-          // value={props.personalInfo.objective}
-          // setValue={props.setObjective}
+          value={props.personalInfo.objective}
+          setValue={(value) =>
+            props.onAddPersonalInfo({
+              ...props.personalInfo,
+              objective: value,
+            })
+          }
           error={errors.objective ? true : false}
           errorMessage={errors.objective ? errors.objective.message : null}
         />
