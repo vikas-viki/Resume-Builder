@@ -59,7 +59,7 @@ const PersonalInfoComponent = (props) => {
   };
 
   const handleNext = (data) => {
-    console.log(img.length);
+    // console.log(img.length);
     if (img.length) {
       setLoading(true);
       props.onAddPersonalInfo({ profileImg: img, ...data });
@@ -138,7 +138,7 @@ const PersonalInfoComponent = (props) => {
   }, []);
 
   // const profileImg = sotreImage.map((ele) => ele.img);
-  console.log(props.personalInfo, errors);
+  // console.log(props.personalInfo, errors);
 
   return (
     <Paper className="personal-info-paper" elevation={3}>

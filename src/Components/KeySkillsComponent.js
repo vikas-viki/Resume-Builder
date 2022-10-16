@@ -1,4 +1,4 @@
-import { Paper, Typography, Divider, Button } from "@mui/material";
+import { Paper, Divider, Button } from "@mui/material";
 import React, { useState } from "react";
 import InputComponent from "./InputComponent";
 import "../Styles/KeySkillsComponent.css";
@@ -27,7 +27,7 @@ function KeySkillsComponent(props) {
   } = useForm();
 
   const handlePreview = (data) => {
-    console.log(data);
+    // console.log("data",data);
     setLoading(true);
     // props.onEditSkill(Object.values(data));
 
@@ -35,6 +35,7 @@ function KeySkillsComponent(props) {
       setLoading(false);
       props.setTab(props.tab + 1);
     }, 1000);
+
   };
 
   const handleBack = () => {
@@ -51,7 +52,7 @@ function KeySkillsComponent(props) {
     props.onEditSkill(newSkills);
   };
 
-  console.log(props.skills, errors);
+  // console.log(props.skills, errors);
 
   return (
     <Paper elevation={3} className="key-skills-paper">

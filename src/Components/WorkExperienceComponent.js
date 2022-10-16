@@ -45,7 +45,7 @@ const WorkExperienceComponent = (props) => {
   };
 
   const handleNext = (data) => {
-    console.log(data);
+    // console.log(data);
     setLoading(true);
 
     let experienceOne = {};
@@ -77,7 +77,7 @@ const WorkExperienceComponent = (props) => {
     }, 1000);
   };
 
-  console.log(props.experiences, errors);
+  // console.log(props.experiences, errors);
 
   const addNewExperience = () => {
     props.setExperience({

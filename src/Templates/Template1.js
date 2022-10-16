@@ -42,7 +42,7 @@ const Template1 = (props) => {
         lg: '650px',
         xl: '700px'
       }
-    }} id='report' elevation={3}>
+    }} id={`${props.index}report`} elevation={3}>
       <TemplateHeader
         primaryColor={"#C98A55"}
         secondaryColor={"black"}

@@ -44,7 +44,7 @@ const Template2 = (props) => {
       }
 
     }}
-    id='report'
+    id={`${props.index}report`}
     elevation={3}>
       <TemplateHeader
         primaryColor={"white"}

@@ -43,7 +43,7 @@ const EducationComponent = (props) => {
   };
 
   const handleNext = (data) => {
-    console.log(data);
+    // console.log(data);
     setLoading(true);
     props.onAddEducation(data);
 
@@ -53,7 +53,7 @@ const EducationComponent = (props) => {
     }, 1000);
   };
 
-  console.log(props.educationInfo, errors);
+  // console.log(props.educationInfo, errors);
 
   return (
     <Paper className="education-paper" elevation={3}>
@@ -110,7 +110,7 @@ const EducationComponent = (props) => {
             error={errors.startYear ? true : false}>
             <Controller
               render={(props) => {
-                console.log(props);
+                // console.log(props);
                 return (
                   <Select
                     value={props.field.value}

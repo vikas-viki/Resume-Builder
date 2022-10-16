@@ -19,8 +19,10 @@ const PreviewComponent = (props) => {
   const [loading, setLoading] = useState(false);
   const [resumeName, setResumeName] = useState("");
   const [error, setError] = useState("");
+  // console.log("props", props)
 
   const getTemplate = (template, index) => {
+    // console.log("template.id ",template.id )
     if (template.id === props.selectedTemplateId) {
       const TemplateComp = React.cloneElement(template.template, {
         personalinfo: props.personalInfo,
@@ -33,7 +35,7 @@ const PreviewComponent = (props) => {
     }
   };
 
-  console.log(props.initialPersonalInfoState);
+  // console.log(props.initialPersonalInfoState);
 
   const handleSave = () => {
     if (resumeName.length === 0) {
@@ -43,17 +45,17 @@ const PreviewComponent = (props) => {
       setLoading(true);
       const report = new JsPDF("portrait", "pt", "a4");
       report.html(document.querySelector("#report")).then(() => {
-        report.save(`${resumeName}.pdf`);
+        // report.save(`${resumeName}.pdf`);
         setLoading(false);
         //Saving the user data in localstorage
         let resumes = window.localStorage.getItem("resumes");
-        console.log(resumes);
+        // console.log(resumes);
         if (resumes) {
           let newResumes = JSON.parse(resumes);
 
           newResumes.push({
-            template_id: props.selectedTemplateId,
-            id: Math.random(),
+            template_id: Math.random(),
+            id: props.selectedTemplateId,
             personalInfo: props.personalInfo,
             experiences: props.experiences,
             educationInfo: props.educationInfo,
@@ -66,8 +68,8 @@ const PreviewComponent = (props) => {
             "resumes",
             JSON.stringify([
               {
-                template_id: props.selectedTemplateId,
-                id: Math.random(),
+                template_id: Math.random(),
+                id: props.selectedTemplateId,
                 personalInfo: props.personalInfo,
                 experiences: props.experiences,
                 educationInfo: props.educationInfo,

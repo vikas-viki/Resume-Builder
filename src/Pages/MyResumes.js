@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../Components/Common/Navbar";
 import "../Styles/MyResumes.css";
 import { Button } from "@mui/material";
@@ -42,15 +42,20 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MyResumes = (props) => {
-  const resumes = JSON.parse(window.localStorage.getItem("resumes"));
+  const [rResumes, setRResumes] = useState([])
+  const resumes = window.localStorage.getItem("resumes").length>=1 ? JSON.parse(window.localStorage.getItem("resumes")) : "";
+  useEffect(()=>{
+
+    setRResumes(resumes);
+  },[])
   const navigate = useNavigate();
 
-  const getTemplate = (resume) => {
+  const getTemplate = (resume,index) => {
     let template = templates.find(
-      (eachTemplate) => eachTemplate.id === resume.template_id
+      (eachTemplate) => eachTemplate.id === resume.id
     );
-
-    // console.log(template);
+    // console.log("resume",resume)
+    // console.log("template", template);
 
     const TemplateComp = React.cloneElement(template.template, {
       personalinfo: resume.personalInfo,
@@ -58,6 +63,7 @@ const MyResumes = (props) => {
       educationinfo: resume.educationInfo,
       skills: resume.skills,
       key: resume.id,
+      index: index
     });
 
     return TemplateComp;
@@ -66,27 +72,26 @@ const MyResumes = (props) => {
   const deleteResume = (resume) => {
 
     let resumes = window.localStorage.getItem("resumes");
-    console.log(resumes)
 
     let newResumes = JSON.parse(resumes);
     const newSetOfResumes = newResumes.filter((el) => {
-      return el.id !== resume.id
+      return el.template_id !== resume.template_id
     })
 
     window.localStorage.setItem("resumes", JSON.stringify(newSetOfResumes));
-
+    setRResumes(JSON.parse(window.localStorage.getItem("resumes")));
   }
   const downloadResume = (id) => {
-    console.log(id)
-    const report = new JsPDF("p", "pt", "a4")
-    report.html(document.getElementById(`${id}`)).then(() => {
+    // console.log(id)
+    const report = new JsPDF("portrait", "pt", "a4")
+    report.html(document.getElementById(`${id}report`)).then(() => {
       report.save(`resume.pdf`)
       // // console.log(resumes)
     })
   }
 
   const setUserData = (resume) => {
-    console.log(resume);
+    // console.log(resume);
     //set personal info
 
     props.onAddPersonalInfo(resume.personalInfo);
@@ -121,10 +126,10 @@ const MyResumes = (props) => {
             alignItems="center"
             className="grid"
           >
-            {resumes.length >= 1 ? (
-              resumes.map((resume, index) => {
+            {resumes.length >=1 ? (
+              rResumes.map((resume, index) => {
                 return <Grid item className={`resume `} id={`${index}resume`} margin={2} key={index}>
-                  <Item>{getTemplate(resume)}
+                  <Item id={`${index}ITEM`}>{getTemplate(resume, index)}
                     < BlackScreen />
                     <div>
 
@@ -136,7 +141,7 @@ const MyResumes = (props) => {
                           transform: "inherit"
                         }}
                         className="use-template-btn"
-                        onClick={() => { downloadResume(index + "resume") }}
+                        onClick={() => { downloadResume(index ) }}
                         size="medium"
                         variant="contained">
                         Download
@@ -161,9 +166,7 @@ const MyResumes = (props) => {
 
 
               })
-            )
-
-              : (
+            ): (
                 <div className="no-resumes-container">
                   <SentimentVeryDissatisfiedIcon fontSize="large" />
                   <p className="no-resumes-text">
