@@ -52,7 +52,8 @@ const PreviewComponent = (props) => {
           let newResumes = JSON.parse(resumes);
 
           newResumes.push({
-            id: props.selectedTemplateId,
+            template_id: props.selectedTemplateId,
+            id: Math.random(),
             personalInfo: props.personalInfo,
             experiences: props.experiences,
             educationInfo: props.educationInfo,
@@ -65,7 +66,8 @@ const PreviewComponent = (props) => {
             "resumes",
             JSON.stringify([
               {
-                id: props.selectedTemplateId,
+                template_id: props.selectedTemplateId,
+                id: Math.random(),
                 personalInfo: props.personalInfo,
                 experiences: props.experiences,
                 educationInfo: props.educationInfo,

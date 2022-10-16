@@ -29,15 +29,15 @@ const Template2 = (props) => {
   return (
     <Paper sx={{
       width:{
-        xs: '100%',
-        sm: '90%',
+        xs: '350px',
+        sm: '400px',
         md: '450px',
         lg: '500px',
         xl: '550px'
       },
       height: {
-        xs: '600px',
-        sm: '600px',
+        xs: '500px',
+        sm: '550px',
         md: '600px',
         lg: '650px',
         xl: '700px'

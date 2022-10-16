@@ -1,6 +1,9 @@
 .template-education-details {
   font-size: 13px;
   font-weight: 600;
+  text-align: left;
+  margin-left: 13px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
 }
 

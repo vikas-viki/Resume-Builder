@@ -1,5 +1,8 @@
 .my-resumes {
   width: 100%;
+  background-color: rgba(228, 228, 228, 0.722);
+  padding: 50px;
+  justify-items: center;
 }
 
 .resume{
@@ -32,9 +35,10 @@
   visibility: visible;
 }
 
-.my-resumes-container .no-resumes-container {
+ .no-resumes-container {
   width: 100%;
   display: flex;
+  padding-top: 150px;
   flex-direction: column;
   align-items: center;
 }
@@ -42,6 +46,12 @@
 .my-resumes-container .no-resumes-container .no-resumes-text {
   font-size: 15px;
   font-weight: 500;
+}
+
+@media screen and (max-width: 500px) {
+  .my-resumes{
+    padding: 0px;
+  }
 }
 @media screen and (max-width: 1050px) {
   .my-resumes-container{

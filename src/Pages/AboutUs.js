@@ -36,6 +36,7 @@ export default function ButtonMUI() {
                 sm: "18px",
                 lg: "25px",
               },
+              textAlign: "justify"
             }}>
             Resume Builder offers free, HR-approved resume templates to help you
             create a professional resume in minutes. Choose from several

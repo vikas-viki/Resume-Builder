@@ -51,7 +51,21 @@
 .templates-img-cont:hover .MuiButtonBase-root.MuiButton-root {
   visibility: visible;
 }
-
+.homeInfoWrapper .grid{
+  display: flex;
+  justify-content: center;
+  padding: 50px ;
+  text-align: center;
+  gap: 20px;
+}
+.item3{
+  word-wrap: wrap;
+  position: relative;
+}
+.homeImage{
+  width: 300px;
+  height: 180px;
+}
 @media screen and (max-width: 450px) {
   .home-templates-cont {
     padding: 15px 30px;
