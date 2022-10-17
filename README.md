@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Resume Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Technologies that are used in this project.
 
 ## Available Scripts
 
