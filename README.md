@@ -1,8 +1,10 @@
 # Resume Builder
 
-Technologies that are used in this project.
+## Technologies that are used in this project.
+  <ul>
+    <li>React</li>  
+</ul>
 
-## Available Scripts
 
 In the project directory, you can run:
 
