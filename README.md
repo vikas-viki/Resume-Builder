@@ -1,4 +1,4 @@
-# Resume Builder 
+# Resume Builder 📄
 
 ## Build your resume with us and land on your dream job 🤩.
 
