@@ -1,5 +1,7 @@
 # Resume Builder
 
+### You can build you resume by this app with some of choosen templates, you can even customise your resume based on your requirnments. 
+
 ### Technologies that are used in this project.
   <ul>
     <li>React</li> 
