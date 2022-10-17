@@ -1,6 +1,6 @@
 # Resume Builder 
 
-## Build your resume with us and land on your dream job.
+## Build your resume with us and land on your dream job 🤩.
 
 ### You can build you resume by this app with some of choosen templates, you can even customise your resume based on your requirnments. 
 
