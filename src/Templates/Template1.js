@@ -25,24 +25,27 @@ const Template1 = (props) => {
     ? props.educationinfo
     : data.education_details;
   const skills = props.skills ? props.skills : data.key_skills;
-
+  console.log(props.index);
   return (
-    <Paper sx={{
-      width:{
-        xs: '350px',
-        sm: '400px',
-        md: '450px',
-        lg: '500px',
-        xl: '550px'
-      },
-      height: {
-        xs: '500px',
-        sm: '550px',
-        md: '600px',
-        lg: '650px',
-        xl: '700px'
-      }
-    }} id={`${props.index}report`} elevation={3}>
+    <Paper
+      sx={{
+        width: {
+          xs: "350px",
+          sm: "400px",
+          md: "450px",
+          lg: "500px",
+          xl: "550px",
+        },
+        height: {
+          xs: "500px",
+          sm: "550px",
+          md: "600px",
+          lg: "650px",
+          xl: "700px",
+        },
+      }}
+      id={`${props.index}report`}
+      elevation={3}>
       <TemplateHeader
         primaryColor={"#C98A55"}
         secondaryColor={"black"}

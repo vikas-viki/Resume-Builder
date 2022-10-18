@@ -29,7 +29,7 @@ const PreviewComponent = (props) => {
         workexperience: props.experiences,
         educationinfo: props.educationInfo,
         skills: props.skills,
-        key: index,
+        index: index,
       });
       return TemplateComp;
     }
@@ -44,44 +44,47 @@ const PreviewComponent = (props) => {
       setError("");
       setLoading(true);
       const report = new JsPDF("portrait", "pt", "a4");
-      report.html(document.querySelector("#report")).then(() => {
-        // report.save(`${resumeName}.pdf`);
-        setLoading(false);
-        //Saving the user data in localstorage
-        let resumes = window.localStorage.getItem("resumes");
-        // console.log(resumes);
-        if (resumes) {
-          let newResumes = JSON.parse(resumes);
+      report
+        .html(document.getElementById(`${props.selectedTemplateId - 1}report`))
+        .then(() => {
+          report.save(`${resumeName}.pdf`);
+          setLoading(false);
+          //Saving the user data in localstorage
+          let resumes = window.localStorage.getItem("resumes");
+          // console.log(resumes);
+          if (resumes) {
+            let newResumes = JSON.parse(resumes);
 
-          newResumes.push({
-            template_id: Math.random(),
-            id: props.selectedTemplateId,
-            personalInfo: props.personalInfo,
-            experiences: props.experiences,
-            educationInfo: props.educationInfo,
-            skills: props.skills,
-          });
+            newResumes.push({
+              template_id: Math.random(),
+              id: props.selectedTemplateId,
+              personalInfo: props.personalInfo,
+              experiences: props.experiences,
+              educationInfo: props.educationInfo,
+              skills: props.skills,
+            });
 
-          window.localStorage.setItem("resumes", JSON.stringify(newResumes));
-        } else {
-          window.localStorage.setItem(
-            "resumes",
-            JSON.stringify([
-              {
-                template_id: Math.random(),
-                id: props.selectedTemplateId,
-                personalInfo: props.personalInfo,
-                experiences: props.experiences,
-                educationInfo: props.educationInfo,
-                skills: props.skills,
-              },
-            ])
-          );
-        }
+            window.localStorage.setItem("resumes", JSON.stringify(newResumes));
+          } else {
+            window.localStorage.setItem(
+              "resumes",
+              JSON.stringify([
+                {
+                  template_id: Math.random(),
+                  id: props.selectedTemplateId,
+                  personalInfo: props.personalInfo,
+                  experiences: props.experiences,
+                  educationInfo: props.educationInfo,
+                  skills: props.skills,
+                },
+              ])
+            );
+          }
 
-        //Redirect user to the myResumes page
-        window.location.reload();
-      });
+          //Redirect user to the myResumes page
+          window.location.reload();
+        })
+        .catch((error) => console.log(error.message));
     }
   };
 
@@ -93,14 +96,14 @@ const PreviewComponent = (props) => {
     <Container
       sx={{
         padding: {
-          xs: '40px 20px',
-          md: "60px 80px"
-        }
+          xs: "40px 20px",
+          md: "60px 80px",
+        },
       }}
       className="preview-container">
       <h2 className="preview-header-title">Resume Preview</h2>
       <div className="resume-preview-grid-container">
-        <div className="resume-preview-grid-item" id='previewresume'>
+        <div className="resume-preview-grid-item" id="previewresume">
           {templates.map((template, index) => {
             return getTemplate(template, index);
           })}
@@ -112,7 +115,7 @@ const PreviewComponent = (props) => {
               value={resumeName}
               onChange={(e) => setResumeName(e.target.value)}
               className="resume-name-field"
-              sx={{width:'70%'}}
+              sx={{ width: "70%" }}
               id="outlined-basic"
               variant="outlined"
               error={error.length > 0 ? true : false}

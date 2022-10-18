@@ -6,7 +6,7 @@ const TemplateHeader = (props) => {
     <div style={{ backgroundColor: props.bgColor }}>
       <div className="template-header">
         <div className="template-header-first">
-          {props.personalInfo.profileImg.length ? (
+          {props.personalInfo.profileImg.length > 0 ? (
             <div className="template-img-cont">
               <img
                 className="template-profile-img"

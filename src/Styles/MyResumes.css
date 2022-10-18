@@ -5,7 +5,7 @@
   justify-items: center;
 }
 
-.resume{
+.resume {
   position: relative;
 }
 .resume:hover .black-screen {
@@ -15,27 +15,34 @@
 .resume:hover {
   cursor: pointer;
 }
-.resume:hover .MuiButtonBase-root.MuiButton-root.use-template-btn {
-  visibility: visible;
-  z-index: 5;
-}
 
-
-.MuiButtonBase-root.MuiButton-root.use-template-btn {
+.use-template-btn-cont {
+  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  visibility: hidden;
+  display: none;
+}
+
+.resume:hover .use-template-btn-cont {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 5;
+}
+
+.use-template-btn-cont .MuiButtonBase-root.MuiButton-root.use-template-btn {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  visibility: visible;
   text-transform: capitalize;
 }
 
-.resume:hover .MuiButtonBase-root.MuiButton-root {
-  visibility: visible;
-}
-
- .no-resumes-container {
+.no-resumes-container {
   width: 100%;
   display: flex;
   padding-top: 150px;
@@ -49,13 +56,13 @@
 }
 
 @media screen and (max-width: 500px) {
-  .my-resumes{
+  .my-resumes {
     padding: 0px;
   }
 }
 @media screen and (max-width: 1050px) {
-  .my-resumes-container{
+  .my-resumes-container {
     justify-content: center;
-    padding: 40px 30px!important;
+    padding: 40px 30px !important;
   }
 }
