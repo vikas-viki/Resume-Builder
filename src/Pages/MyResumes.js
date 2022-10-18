@@ -85,9 +85,9 @@ const MyResumes = (props) => {
   };
 
   const downloadResume = (id) => {
-    console.log(id);
+    // console.log(id);
     const report = new JsPDF("portrait", "pt", "a4");
-    report.html(document.getElementById(`${id}report`)).then(() => {
+    report.html(document.getElementById(`${id}ITEM`)).then(() => {
       report.save(`resume.pdf`);
       // // console.log(resumes)
     });
