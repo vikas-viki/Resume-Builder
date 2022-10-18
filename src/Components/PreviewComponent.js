@@ -55,6 +55,15 @@ const PreviewComponent = (props) => {
           if (resumes) {
             let newResumes = JSON.parse(resumes);
 
+            let sectionFound = newResumes.find(
+              (resume) => resume.id === props.selectedTemplateId
+            );
+
+            if (sectionFound) {
+              window.location.reload();
+              return;
+            }
+
             newResumes.push({
               template_id: Math.random(),
               id: props.selectedTemplateId,
