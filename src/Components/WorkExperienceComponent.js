@@ -1,5 +1,5 @@
 import { Button, Divider, MenuItem, Paper, Select } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "../Styles/WorkExperienceComponent.css";
 import { connect } from "react-redux";
 import BackNextBtnComponent from "./BackNextBtnComponent";
