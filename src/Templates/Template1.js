@@ -25,7 +25,7 @@ const Template1 = (props) => {
     ? props.educationinfo
     : data.education_details;
   const skills = props.skills ? props.skills : data.key_skills;
-  console.log(props.index);
+  // console.log(props.index);
   return (
     <Paper
       sx={{
