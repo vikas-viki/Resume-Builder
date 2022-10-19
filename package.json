@@ -1,5 +1,6 @@
 {
-  "name": "resume",
+  "name": "resume-builder",
+  "description":"React app  taht helps you you to create your resume",
   "version": "0.1.0",
   "engines": {
 	  "node": "v16.15.0",
