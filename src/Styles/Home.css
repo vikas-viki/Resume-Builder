@@ -21,8 +21,7 @@
 
 .templates-img-cont {
   width: 100%;
-  position: relative;
-  /* height: fit-content; */
+  position: relative; 
 }
 
 .templates-img-cont:hover {

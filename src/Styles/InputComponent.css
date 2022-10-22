@@ -25,7 +25,6 @@
   margin: 0;
 }
 
-/* Firefox */
 .MuiInputBase-input.MuiOutlinedInput-input[type="number"] {
   -moz-appearance: textfield;
 }
