@@ -2,10 +2,6 @@
   "name": "resume-builder",
   "description":"React app  taht helps you you to create your resume",
   "version": "0.1.0",
-  "engines": {
-	  "node": "v16.15.0",
-  	"npm": "8.5.5"
-  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -30,8 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --force && npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
