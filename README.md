@@ -16,9 +16,9 @@
  
  #### Team members    
   <ul>
-    <li>Shankar</li>
-    <li>Jagganath</li>
-    <li>Vikas</li>
+    <li>Bhabani Shankar Das</li>
+    <li>Jagannath Prasad Mohanty</li>
+    <li>Vikas Kotari</li>
   </ul>
 
 
