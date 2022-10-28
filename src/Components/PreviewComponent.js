@@ -4,9 +4,11 @@ import "../Styles/PreviewComponent.css";
 import { connect } from "react-redux";
 import { templates } from "../Data/templates";
 import JsPDF from "jspdf";
+import uniqid from "uniqid";
 
 const mapStateToProps = (state) => ({
   selectedTemplateId: state.selectedTemplateReducer.selectedTemplateId,
+  selectedResumeId: state.selectedTemplateReducer.selectedResumeId,
   personalInfo: state.personalInfoReducer.personalInfo,
   experiences: state.workExperienceReducer.experiences,
   educationInfo: state.educationDetailsReducer.educationInfo,
@@ -55,18 +57,36 @@ const PreviewComponent = (props) => {
           if (resumes) {
             let newResumes = JSON.parse(resumes);
 
-            let sectionFound = newResumes.find(
-              (resume) => resume.id === props.selectedTemplateId
+            let resumeFound = newResumes.find(
+              (resume) => resume.id === props.selectedResumeId
             );
 
-            if (sectionFound) {
+            if (resumeFound) {
               window.location.reload();
+              const allNewResumes = newResumes.map((resume) => {
+                if (resume.id === props.selectedResumeId) {
+                  return {
+                    template_id: props.selectedTemplateId,
+                    id: props.selectedResumeId,
+                    personalInfo: props.personalInfo,
+                    experiences: props.experiences,
+                    educationInfo: props.educationInfo,
+                    skills: props.skills,
+                  };
+                } else return resume;
+              });
+
+              window.localStorage.setItem(
+                "resumes",
+                JSON.stringify(allNewResumes)
+              );
+
               return;
             }
 
             newResumes.push({
-              template_id: Math.random(),
-              id: props.selectedTemplateId,
+              template_id: props.selectedTemplateId,
+              id: uniqid(),
               personalInfo: props.personalInfo,
               experiences: props.experiences,
               educationInfo: props.educationInfo,
@@ -79,8 +99,8 @@ const PreviewComponent = (props) => {
               "resumes",
               JSON.stringify([
                 {
-                  template_id: Math.random(),
-                  id: props.selectedTemplateId,
+                  template_id: props.selectedTemplateId,
+                  id: uniqid(),
                   personalInfo: props.personalInfo,
                   experiences: props.experiences,
                   educationInfo: props.educationInfo,

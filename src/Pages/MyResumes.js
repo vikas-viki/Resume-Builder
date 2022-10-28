@@ -16,6 +16,7 @@ import {
   addEducation,
   addPersonalInfo,
   editSkill,
+  selectResume,
   selectTemplate,
 } from "../Redux/actions";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +35,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setSelectedTemplateId: (id) => dispatch(selectTemplate(id)),
+  setSelectedResumeId: (id) => dispatch(selectResume(id)),
   onAddPersonalInfo: (details) => dispatch(addPersonalInfo(details)),
   setAllExperience: (experiences) => dispatch(addAllExperience(experiences)),
   onAddEducation: (details) => dispatch(addEducation(details)),
@@ -55,7 +57,7 @@ const MyResumes = (props) => {
 
   const getTemplate = (resume, index) => {
     let template = templates.find(
-      (eachTemplate) => eachTemplate.id === resume.id
+      (eachTemplate) => eachTemplate.id === resume.template_id
     );
     // console.log("resume",resume)
     // console.log("template", template);
@@ -76,8 +78,8 @@ const MyResumes = (props) => {
     let resumes = window.localStorage.getItem("resumes");
 
     let newResumes = JSON.parse(resumes);
-    const newSetOfResumes = newResumes.filter((el) => {
-      return el.template_id !== resume.template_id;
+    const newSetOfResumes = newResumes.filter((eachResume) => {
+      return eachResume.id !== resume.id;
     });
 
     window.localStorage.setItem("resumes", JSON.stringify(newSetOfResumes));
@@ -113,7 +115,8 @@ const MyResumes = (props) => {
   };
 
   const navigateToFillDetails = (resume) => {
-    props.setSelectedTemplateId(resume.id);
+    props.setSelectedTemplateId(resume.template_id);
+    props.setSelectedResumeId(resume.id);
     setUserData(resume);
     navigate("/template/fill-details");
   };

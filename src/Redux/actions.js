@@ -5,6 +5,11 @@ export const selectTemplate = (id) => ({
   payload: id,
 });
 
+export const selectResume = (id) => ({
+  type: actionTypes.SELECTRESUME,
+  payload: id,
+});
+
 export const addPersonalInfo = (details) => ({
   type: actionTypes.ADDPERSONALINFO,
   payload: details,

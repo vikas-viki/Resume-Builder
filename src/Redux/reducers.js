@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 
 const initialSelectedTemplateState = {
   selectedTemplateId: null,
+  selectedResumeId: null,
 };
 
 const initialPersonalInfoState = {
@@ -52,6 +53,8 @@ export const selectedTemplateReducer = (
   switch (action.type) {
     case actionTypes.SELECTTEMPLATE:
       return { ...state, selectedTemplateId: action.payload };
+    case actionTypes.SELECTRESUME:
+      return { ...state, selectedResumeId: action.payload };
     default:
       return state;
   }
