@@ -62,7 +62,6 @@ const PreviewComponent = (props) => {
             );
 
             if (resumeFound) {
-              window.location.reload();
               const allNewResumes = newResumes.map((resume) => {
                 if (resume.id === props.selectedResumeId) {
                   return {
@@ -80,6 +79,8 @@ const PreviewComponent = (props) => {
                 "resumes",
                 JSON.stringify(allNewResumes)
               );
+
+              window.location.reload();
 
               return;
             }
