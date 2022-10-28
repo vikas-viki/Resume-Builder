@@ -2,7 +2,7 @@
 
 ## Build your resume with us and land on your dream job 🤩.
 
-### This app helps you to build your resume with some of choosen templates, you can even customise your resume based on your requirnments. 
+### This app helps you to build your resume with some of the choosen templates, you can even customise your resume based on your requirements. 
 
 ### Technologies that are used in this project.
   <ul>
